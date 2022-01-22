@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "41540613622",
+    "project_id": "papigo-5b3b0",
+    "storage_bucket": "papigo-5b3b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41540613622:android:71581381306730685c43d7",
+        "android_client_info": {
+          "package_name": "com.mobi.papigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41540613622-bvpijgdp8a3j9c65tr9dd28eq9lpi0ih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobi.papigo",
+            "certificate_hash": "92ac4c413a02e9779467d14b4c56b2fc70eddd01"
+          }
+        },
+        {
+          "client_id": "41540613622-nv1nptn5ffu9ete48lp5dq0kb86p11pj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobi.papigo",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "41540613622-pjahq4nk4rceu30j9mf67ufd2rusl76m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_FQrXg67_ZfwbYOV-VvnTRYw6jxqQzBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41540613622-pjahq4nk4rceu30j9mf67ufd2rusl76m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "41540613622-0i41cdj8lojt0pt4uvmlldg3a5dlg8fm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobi.papigo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41540613622:android:6e260baeeb1958a95c43d7",
+        "android_client_info": {
+          "package_name": "com.papigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41540613622-pjahq4nk4rceu30j9mf67ufd2rusl76m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_FQrXg67_ZfwbYOV-VvnTRYw6jxqQzBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41540613622-pjahq4nk4rceu30j9mf67ufd2rusl76m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "41540613622-0i41cdj8lojt0pt4uvmlldg3a5dlg8fm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobi.papigo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

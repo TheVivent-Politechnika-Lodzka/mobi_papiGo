@@ -5,6 +5,7 @@ import LoginScreen from '../../screens/auth/loginScreen';
 import RegisterScreen from '../../screens/auth/registerScreen';
 import LandingScreen from '../../screens/auth/landingScreen';
 import MapScreen from '../../screens/main/mapScreen';
+import UserScreen from '../../screens/main/userScreen';
 
 const MainStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
@@ -33,6 +34,7 @@ export default function AllStack() {
         initialRouteName="Map"
       >
         <MainStack.Screen name="Map" component={MapScreen} />
+        <MainStack.Screen name="User" component={UserScreen} />
       </MainStack.Navigator>
     );
   }

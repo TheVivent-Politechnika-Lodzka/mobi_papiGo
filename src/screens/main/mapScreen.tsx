@@ -1,17 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 import React, { useEffect } from 'react';
-import { View, Pressable, Image } from 'react-native';
+import { View, Pressable, Image, Text } from 'react-native';
 import { logout } from '../../auth/methods';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { PermissionsAndroid } from 'react-native';
 import { Alert } from 'react-native';
+import MapComponent from '../../components/map-component';
 
 const lapaPng = require('../../../assets/lapa.png');
 const logoImg = require('../../../assets/logo.png');
 const plecakImg = require('../../../assets/plecak.png');
 
-export default function MapScreen() {
+// TODO: zmienić any na coś sensownego
+export default function MapScreen({ navigation }: any) {
+  const [geoPermGranted, setGeoPermGranted] = React.useState(false);
+
+  const moveToScreen = (screen: string) => {
+    navigation.navigate(screen);
+  };
+
   const signOut = () => {
     logout();
   };
@@ -32,8 +39,8 @@ export default function MapScreen() {
           buttonPositive: 'OK',
         }
       );
-      if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-        Alert.alert('Location permission denied');
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        setGeoPermGranted(true);
       }
     } catch (err) {
       Alert.alert(err);
@@ -42,12 +49,15 @@ export default function MapScreen() {
 
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        showsUserLocation={true}
-        provider={PROVIDER_GOOGLE}
-      />
-      <View style={styles.overlay}>
+      {geoPermGranted ? (
+        <MapComponent />
+      ) : (
+        <View style={styles.container}>
+          <Text>Musisz udostępnić lokalizację</Text>
+        </View>
+      )}
+
+      <View pointerEvents="box-none" style={styles.overlay}>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <Pressable
@@ -60,7 +70,7 @@ export default function MapScreen() {
           <View style={styles.buttonContainer}>
             <Pressable
               style={styles.button}
-              onPress={() => Alert.alert('test 2')}
+              onPress={() => moveToScreen('User')}
             >
               <Image style={{ width: '90%', height: '90%' }} source={logoImg} />
             </Pressable>
@@ -90,9 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     ...StyleSheet.absoluteFillObject,
   },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
+
   overlay: {
     position: 'absolute',
     top: 0,
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    height: '15%',
+    height: '20%',
     backgroundColor: 'rgba(135, 170, 170, 0.5)',
     flexDirection: 'row',
   },

@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
 import 'react-native-gesture-handler';
-import 'react-native-reanimated';
+// import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AllStack from './src/auth/stacks';
 

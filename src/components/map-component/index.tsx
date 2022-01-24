@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { EventUserLocation, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Alert, StyleSheet } from 'react-native';
 
 interface Location {
   latitude: number;
   longitude: number;
   altitude: number;
+  timestamp: number;
+  accuracy: number;
+  speed: number;
   heading: number;
+  isFromMockProvider: boolean;
 }
 
 export default function MapComponent() {
@@ -31,13 +35,8 @@ export default function MapComponent() {
     );
   }, [location]);
 
-  const test = (e: any) => {
-    const newLocation: Location = {
-      latitude: e.nativeEvent.coordinate.latitude,
-      longitude: e.nativeEvent.coordinate.longitude,
-      altitude: e.nativeEvent.coordinate.altitude,
-      heading: e.nativeEvent.coordinate.heading,
-    };
+  const updateLocation = (e: EventUserLocation) => {
+    const newLocation: Location = e.nativeEvent.coordinate;
     setLocation(newLocation);
   };
 
@@ -45,7 +44,7 @@ export default function MapComponent() {
     <MapView
       ref={mapRef}
       style={styles.map}
-      onUserLocationChange={test}
+      onUserLocationChange={updateLocation}
       //  consts:
       showsUserLocation={true}
       userLocationPriority="high"

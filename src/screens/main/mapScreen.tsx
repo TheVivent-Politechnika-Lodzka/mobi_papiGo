@@ -6,6 +6,7 @@ import { logout } from '../../auth/methods';
 import { PermissionsAndroid } from 'react-native';
 import { Alert } from 'react-native';
 import MapComponent from '../../components/map-component';
+import useFirestore from '../../auth/useFirestore';
 
 const lapaPng = require('../../../assets/lapa.png');
 const logoImg = require('../../../assets/logo.png');
@@ -17,10 +18,6 @@ export default function MapScreen({ navigation }: any) {
 
   const moveToScreen = (screen: string) => {
     navigation.navigate(screen);
-  };
-
-  const signOut = () => {
-    logout();
   };
 
   useEffect(() => {

@@ -11,6 +11,8 @@ module.exports = {
         'no-shadow': 'off',
         'no-undef': 'off',
         'no-unreachable': 'warn',
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
       },
     },
   ],

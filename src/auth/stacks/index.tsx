@@ -6,11 +6,13 @@ import RegisterScreen from '../../screens/auth/registerScreen';
 import LandingScreen from '../../screens/auth/landingScreen';
 import MapScreen from '../../screens/main/mapScreen';
 import UserScreen from '../../screens/main/userScreen';
+import useFirestore from '../useFirestore';
 
 const MainStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 
 export default function AllStack() {
+  useFirestore();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {

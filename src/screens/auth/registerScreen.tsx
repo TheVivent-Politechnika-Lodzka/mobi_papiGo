@@ -2,10 +2,7 @@ import { Alert, Button, StyleSheet } from 'react-native';
 
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import {
-  authenticateWithGoogle,
-  registerWithEmail,
-} from '../../auth/stacks/methods';
+import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');

@@ -3,10 +3,7 @@ import { StyleSheet } from 'react-native';
 import React from 'react';
 import { View, TextInput, Button, Alert } from 'react-native';
 
-import {
-  loginWithEmail,
-  authenticateWithGoogle,
-} from '../../auth/stacks/methods';
+import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 
 export default function LoginScreen() {
   const [email, setEmail] = React.useState('');

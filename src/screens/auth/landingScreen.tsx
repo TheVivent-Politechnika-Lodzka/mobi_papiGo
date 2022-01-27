@@ -3,8 +3,8 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground } from 'react-native';
 // import Button from '../../components/button';
 
-import { Button } from 'react-native-elements/dist/buttons/Button';
-
+// import { Button } from 'react-native-elements/dist/buttons/Button';
+import TwoButton from '../../components/twoButton';
 const logoImage = require('./../../../assets/logo.png');
 
 // TODO: zmienić to any na coś sensownego
@@ -26,48 +26,12 @@ export default function LandingScreen({ navigation }: any) {
           resizeMode="contain"
         />
       </View>
-
-      {/* <Button value="Logowanie" onPress={login} /> */}
       <View style={styles.button_container}>
-        <Button
-          title="Logowanie"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{ fontWeight: 'bold', color: '#000' }}
-          onPress={login}
-        />
-
-        {/* <Pressable style={styles.button} onPress={login}>
-          <Text style={styles.button_text}>Logowanie</Text>
-        </Pressable> */}
-
-        <Button
-          title="Rejestracja"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{
-            fontWeight: 'bold',
-            color: '#000',
-          }}
-          onPress={register}
+        <TwoButton
+          valueOne="Logowanie"
+          valueTwo="Rejestracja"
+          onPressOne={login}
+          onPressTwo={register}
         />
       </View>
     </View>

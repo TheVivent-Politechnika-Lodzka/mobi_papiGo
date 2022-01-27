@@ -2,8 +2,9 @@ import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
-import TextInput from '../../components/text-input';
-import Button from '../../components/button';
+import TwoButton from '../../components/twoButton';
+import MailInput from '../../components/mailInput';
+import PasswordInput from '../../components/passwordInput';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -34,35 +35,25 @@ export default function RegisterScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.input_container}>
-        <TextInput
-          keyboardType="email-address"
-          placeholder="e-mail"
-          autoComplete="email"
+        <MailInput
           defaultValue={email}
           onChangeText={(newText) => setEmail(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <TextInput
-          placeholder="hasło"
-          autoComplete="password"
-          secureTextEntry={true}
+        <PasswordInput
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <TextInput
-          placeholder="powtórz hasło"
-          autoComplete="password"
-          secureTextEntry={true}
+        <PasswordInput
+          label="Powtórz hasło"
           defaultValue={passwordConfirm}
           onChangeText={(newText) => setPasswordConfirm(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <Button value="Zarejestruj" onPress={handleRegister} />
-        <Button value="Zarejstruj z Google" onPress={handleGoogleRegister} />
+        <TwoButton
+          valueOne="Zaloguj"
+          valueTwo="Zaloguj z Google"
+          onPressOne={handleRegister}
+          onPressTwo={handleGoogleRegister}
+        />
       </View>
     </View>
   );
@@ -80,16 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
-  },
-  input: {
     width: '80%',
-    height: 40,
-    backgroundColor: '#ddd',
-
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    borderRadius: 5,
   },
 });

@@ -124,7 +124,6 @@ export function ItemMarker(props: ItemMarkerProps) {
   return (
     <Marker
       onPress={handlePress}
-      image={collarImg}
       coordinate={{
         latitude: props.latitude,
         longitude: props.longitude,

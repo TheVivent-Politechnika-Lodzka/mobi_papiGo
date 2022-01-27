@@ -6,6 +6,7 @@ import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
 // import Button from '../../components/button';
 import { Input, Button } from 'react-native-elements';
 import TwoButton from '../../components/twoButton';
+import MailInput from '../../components/mailInput';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -43,7 +44,7 @@ export default function RegisterScreen() {
           defaultValue={email}
           onChangeText={(newText) => setEmail(newText)}
         /> */}
-        <Input
+        {/* <Input
           placeholder="adres@pocztowy.pl"
           label="E-mail"
           containerStyle={{
@@ -64,7 +65,12 @@ export default function RegisterScreen() {
           autoComplete="email"
           defaultValue={email}
           onChangeText={(newText) => setEmail(newText)}
+        /> */}
+        <MailInput
+          defaultValue={email}
+          onChangeText={(newText) => setEmail(newText)}
         />
+
         {/* <TextInput
           placeholder="hasło"
           autoComplete="password"

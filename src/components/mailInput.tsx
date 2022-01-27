@@ -2,19 +2,17 @@ import React from 'react';
 import { Input } from 'react-native-elements';
 
 interface InputProps {
-  placeholder: string;
-  label: string;
   defaultValue?: string;
-  onPress: () => void;
+  onChangeText: (text: string) => void;
 }
 
 export default function MailInput(props: InputProps) {
-  const { placeholder, label, defaultValue, onPress } = props;
+  const { defaultValue, onChangeText } = props;
 
   return (
     <Input
-      placeholder={placeholder}
-      label={label}
+      placeholder="adres@pocztowy.pl"
+      label="E-mail"
       containerStyle={{
         backgroundColor: '#C8E3D4',
         borderRadius: 20,
@@ -32,7 +30,7 @@ export default function MailInput(props: InputProps) {
       keyboardType="email-address"
       autoComplete="email"
       defaultValue={defaultValue}
-      onChangeText={onPress}
+      onChangeText={onChangeText}
     />
   );
 }

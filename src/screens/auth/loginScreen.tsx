@@ -5,6 +5,7 @@ import { View, Alert } from 'react-native';
 import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 import { Input, Button, Avatar } from 'react-native-elements';
 import TwoButton from '../../components/twoButton';
+import MailInput from '../../components/mailInput';
 
 const logoImage = require('./../../../assets/logo.png');
 
@@ -50,6 +51,10 @@ export default function LoginScreen() {
           }}
           keyboardType="email-address"
           autoComplete="email"
+          defaultValue={email}
+          onChangeText={(newText) => setEmail(newText)}
+        />
+        <MailInput
           defaultValue={email}
           onChangeText={(newText) => setEmail(newText)}
         />

@@ -8,7 +8,10 @@ import {
 } from './marker';
 import { Animal } from '../types';
 import { useAnimals } from '../auth/useFirestore';
-import { getRandomIntInclusive } from '../utils/randomizer';
+import {
+  getRandomFloatInclusive,
+  getRandomIntInclusive,
+} from '../utils/randomizer';
 interface Location {
   latitude: number;
   longitude: number;
@@ -28,24 +31,13 @@ export default function MapComponent() {
     []
   );
 
-  const generateMarkers = () => {
-    const newMarkers: AnimalMarkerProps[] = [];
-    for (let i = 0; i < 2; i++) {
-      const animalMarker = generateRandomAnimalMarker({
-        longitude: location.longitude,
-        latitude: location.latitude,
-        range: 0.0009,
-      });
-      newMarkers.push(animalMarker);
-    }
-    setAnimalMarkers(newMarkers);
-  };
-
   useEffect(() => {
     if (location?.altitude === null || location?.altitude === undefined) {
       return;
     }
-    if (getRandomIntInclusive(1, 100) > 90) {
+    // 10% szansy na dodanie nowego markera
+    // pewnie będzie trzeba zmiejszyć
+    if (getRandomFloatInclusive(1, 100) > 10) {
       return;
     }
 

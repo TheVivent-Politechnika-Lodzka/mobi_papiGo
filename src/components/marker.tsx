@@ -1,9 +1,9 @@
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
 import { Marker } from 'react-native-maps';
 import { Animal, Item } from '../types';
-import { ANIMAL_NAMES } from '../utils/names';
+import { ANIMAL_NAMES, ITEM_NAMES } from '../utils/names';
 import {
   getRandomIntInclusive,
   getRandomItem,
@@ -31,6 +31,16 @@ export function generateRandomAnimalMarker(props: MarkerGenerator) {
   animal.maxEnergy = getRandomIntInclusive(10, 20);
   animal.currentEnergy = animal.maxEnergy;
 
+  if (getRandomIntInclusive(0, 6 - animal.stars) === 0) {
+    animal.stats.agility += getRandomIntInclusive(1, animal.stars);
+  }
+  if (getRandomIntInclusive(0, 6 - animal.stars) === 0) {
+    animal.stats.strength += getRandomIntInclusive(1, animal.stars);
+  }
+  if (getRandomIntInclusive(0, 6 - animal.stars) === 0) {
+    animal.stats.range += getRandomIntInclusive(1, animal.stars);
+  }
+
   const { x, y } = getRandomPointInRange(
     props.longitude,
     props.latitude,
@@ -53,7 +63,9 @@ export function AnimalMarker(props: AnimalMarkerProps) {
   const img = props.animal.type === 'cat' ? catImg : dogImg;
 
   const handlePress = () => {
-    props.onPress(props.longitude, props.latitude, props.animal);
+    if (props.onPress) {
+      props.onPress(props.longitude, props.latitude, props.animal);
+    }
   };
 
   return (
@@ -71,7 +83,32 @@ export function AnimalMarker(props: AnimalMarkerProps) {
   );
 }
 
-interface ItemMarkerProps {
+export function generateRandomItemMarker(props: MarkerGenerator) {
+  const item = new Item();
+  item.name = getRandomItem(ITEM_NAMES);
+  item.stars = getRandomIntInclusive(1, 5);
+  if (getRandomIntInclusive(0, 1) === 1) {
+    item.buff.agility =
+      getRandomIntInclusive(1, 5) + getRandomIntInclusive(0, item.stars);
+  }
+  if (getRandomIntInclusive(0, 1) === 1) {
+    item.buff.strength =
+      getRandomIntInclusive(1, 5) + getRandomIntInclusive(0, item.stars);
+  }
+  if (getRandomIntInclusive(0, 1) === 1) {
+    item.buff.range =
+      getRandomIntInclusive(1, 5) + getRandomIntInclusive(0, item.stars);
+  }
+
+  const { x, y } = getRandomPointInRange(
+    props.longitude,
+    props.latitude,
+    props.range
+  );
+
+  return { item, longitude: x, latitude: y };
+}
+export interface ItemMarkerProps {
   item: Item;
   latitude: number;
   longitude: number;
@@ -79,7 +116,9 @@ interface ItemMarkerProps {
 }
 export function ItemMarker(props: ItemMarkerProps) {
   const handlePress = () => {
-    props.onPress(props.longitude, props.latitude, props.item);
+    if (props.onPress) {
+      props.onPress(props.longitude, props.latitude, props.item);
+    }
   };
 
   return (

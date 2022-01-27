@@ -18,6 +18,8 @@ target 'papiGo' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  pod 'react-native-get-random-values', :path => '../node_modules/react-native-get-random-values'
+
   target 'papiGoTests' do
     inherit! :complete
     # Pods for testing

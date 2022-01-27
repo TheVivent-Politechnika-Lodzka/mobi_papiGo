@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 
 interface ButtonProps {
-  buttonStyles: StyleProp<ViewStyle>;
-  textStyles: StyleProp<ViewStyle>;
+  buttonStyles?: StyleProp<ViewStyle>;
+  textStyles?: StyleProp<ViewStyle>;
   value: string;
   onPress: () => void;
 }

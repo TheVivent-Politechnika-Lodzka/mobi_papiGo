@@ -7,6 +7,8 @@ import LandingScreen from '../screens/auth/landingScreen';
 import MapScreen from '../screens/main/mapScreen';
 import UserScreen from '../screens/main/userScreen';
 import useFirestore from '../auth/useFirestore';
+import InventoryScreen from '../screens/main/InventoryScreen';
+import AnimalsScreen from '../screens/main/animalsScreen';
 
 const MainStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
@@ -37,6 +39,8 @@ export default function AllStack() {
       >
         <MainStack.Screen name="Map" component={MapScreen} />
         <MainStack.Screen name="User" component={UserScreen} />
+        <MainStack.Screen name="Inventory" component={InventoryScreen} />
+        <MainStack.Screen name="Animals" component={AnimalsScreen} />
       </MainStack.Navigator>
     );
   }

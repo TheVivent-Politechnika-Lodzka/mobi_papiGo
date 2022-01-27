@@ -1,19 +1,19 @@
 import { StyleSheet } from 'react-native';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import { Alert } from 'react-native';
 import MapComponent from '../../components/map';
 import ImageButton from '../../components/image-button';
 
-const lapaPng = require('../../../assets/lapa.png');
+const lapaImg = require('../../../assets/lapa.png');
 const logoImg = require('../../../assets/logo.png');
 const plecakImg = require('../../../assets/plecak.png');
 
 // TODO: zmienić any na coś sensownego
 export default function MapScreen({ navigation }: any) {
-  const [geoPermGranted, setGeoPermGranted] = React.useState(false);
+  const [geoPermGranted, setGeoPermGranted] = useState(false);
 
   const moveToScreen = (screen: string) => {
     navigation.navigate(screen);
@@ -55,9 +55,12 @@ export default function MapScreen({ navigation }: any) {
 
       <View pointerEvents="box-none" style={styles.overlay}>
         <View style={styles.buttonsContainer}>
-          <ImageButton onPress={() => Alert.alert('test 1')} src={lapaPng} />
+          <ImageButton onPress={() => moveToScreen('Animals')} src={lapaImg} />
           <ImageButton onPress={() => moveToScreen('User')} src={logoImg} />
-          <ImageButton onPress={() => Alert.alert('test 3')} src={plecakImg} />
+          <ImageButton
+            onPress={() => moveToScreen('Inventory')}
+            src={plecakImg}
+          />
         </View>
       </View>
     </View>
@@ -87,27 +90,5 @@ const styles = StyleSheet.create({
     height: '20%',
     backgroundColor: 'rgba(135, 170, 170, 0.5)',
     flexDirection: 'row',
-  },
-  buttonContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    width: '80%',
-    height: '80%',
-    backgroundColor: '#C8E3D4',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    //cień
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 10,
   },
 });

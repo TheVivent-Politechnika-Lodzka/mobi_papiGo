@@ -1,15 +1,25 @@
 import React from 'react';
-import { StyleSheet, Pressable, Text } from 'react-native';
+import {
+  StyleSheet,
+  Pressable,
+  Text,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 interface ButtonProps {
+  buttonStyles: StyleProp<ViewStyle>;
+  textStyles: StyleProp<ViewStyle>;
   value: string;
   onPress: () => void;
 }
 
 export default function Button(props: ButtonProps) {
+  const { buttonStyles, textStyles, value, onPress } = props;
+
   return (
-    <Pressable style={styles.buttonContainer} onPress={props.onPress}>
-      <Text style={styles.buttonText}>{props.value}</Text>
+    <Pressable style={[styles.buttonContainer, buttonStyles]} onPress={onPress}>
+      <Text style={[styles.buttonText, textStyles]}>{value}</Text>
     </Pressable>
   );
 }

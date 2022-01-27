@@ -5,9 +5,11 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PasswordInput from '../src/components/passwordInput';
 
-
-
 it('Input test', () => {
-  const input = renderer.create(<PasswordInput label='s' defaultValue='as' onChangeText={() => {}}/>).toJSON();
+  const input = renderer
+    .create(
+      <PasswordInput label="s" defaultValue="as" onChangeText={() => {}} />
+    )
+    .toJSON();
   expect(input).toMatchSnapshot();
 });

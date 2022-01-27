@@ -6,10 +6,10 @@ import renderer from 'react-test-renderer';
 import { Item } from '../src/types';
 import ItemCard from '../src/components/item-card';
 
-
-
 it('Card test', () => {
   const item = new Item();
-  const button = renderer.create(<ItemCard item={item}/>).toJSON();
+  const button = renderer
+    .create(<ItemCard item={item} onPress={() => {}} />)
+    .toJSON();
   expect(button).toMatchSnapshot();
 });

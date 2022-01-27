@@ -5,8 +5,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import NavBar from '../src/components/navBar';
 
-
 it('Bar test', () => {
-  const bar = renderer.create(<NavBar navigation={4} user='mobilki'/>).toJSON();
+  const bar = renderer
+    .create(<NavBar navigation={4} user="mobilki" />)
+    .toJSON();
   expect(bar).toMatchSnapshot();
 });

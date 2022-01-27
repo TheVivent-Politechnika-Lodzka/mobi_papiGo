@@ -5,9 +5,17 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import TwoButton from '../src/components/twoButton';
 
-
 it('Button test', () => {
   const valueTwo = 'test';
-  const card = renderer.create(<TwoButton valueOne='5' valueTwo={valueTwo} onPressOne={() => {}} onPressTwo={() => {}}/>).toJSON();
+  const card = renderer
+    .create(
+      <TwoButton
+        valueOne="5"
+        valueTwo={valueTwo}
+        onPressOne={() => {}}
+        onPressTwo={() => {}}
+      />
+    )
+    .toJSON();
   expect(card).toMatchSnapshot();
 });

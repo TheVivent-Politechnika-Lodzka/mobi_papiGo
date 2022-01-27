@@ -5,9 +5,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MailInput from '../src/components/mailInput';
 
-
-
 it('Input test', () => {
-  const input = renderer.create(<MailInput defaultValue='abc@abc.com' onChangeText={() => {}}/>).toJSON();
+  const input = renderer
+    .create(<MailInput defaultValue="abc@abc.com" onChangeText={() => {}} />)
+    .toJSON();
   expect(input).toMatchSnapshot();
 });

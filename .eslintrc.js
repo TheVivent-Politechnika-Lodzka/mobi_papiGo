@@ -13,6 +13,7 @@ module.exports = {
         'no-unreachable': 'warn',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
+        'react-native/no-inline-styles': 'off',
       },
     },
   ],

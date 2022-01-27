@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render test 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#009688",
+      "borderRadius": 10,
+      "elevation": 8,
+      "margin": 2,
+      "paddingHorizontal": 12,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#fff",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    test
+  </Text>
+</View>
+`;

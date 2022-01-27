@@ -1,0 +1,30 @@
+export const ANIMAL_NAMES = [
+  'Rex',
+  'Bella',
+  'Molly',
+  'Tiger',
+  'Simba',
+  'Oscar',
+  'Lucky',
+  'Buddy',
+  'Buster',
+  'Bubbles',
+];
+
+export const ITEM_NAMES = [
+  'Vajra',
+  'Sharur',
+  'Karma',
+  'Dyrnwyn',
+  'Astra',
+  'Nova',
+  'Vega',
+  'Chentu',
+  'Nyx',
+  'Gada',
+  'Luna',
+  'Vel',
+  'Gram',
+  'Gungnir',
+  'Tyrfing',
+];

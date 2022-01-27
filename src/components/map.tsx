@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import MapView, { EventUserLocation, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Alert, StyleSheet } from 'react-native';
-
+import { StyleSheet, Alert } from 'react-native';
+import {
+  generateRandomAnimalMarker,
+  AnimalMarkerProps,
+  AnimalMarker,
+} from './marker';
+import { Animal } from '../types';
+import { useAnimals } from '../auth/useFirestore';
+import { getRandomIntInclusive } from '../utils/randomizer';
 interface Location {
   latitude: number;
   longitude: number;
@@ -14,8 +21,41 @@ interface Location {
 }
 
 export default function MapComponent() {
+  const [animals, animalsUpdater] = useAnimals();
   const mapRef = useRef<MapView>(null);
   const [location, setLocation] = React.useState<Location>({} as Location);
+  const [animalMarkers, setAnimalMarkers] = React.useState<AnimalMarkerProps[]>(
+    []
+  );
+
+  const generateMarkers = () => {
+    const newMarkers: AnimalMarkerProps[] = [];
+    for (let i = 0; i < 2; i++) {
+      const animalMarker = generateRandomAnimalMarker({
+        longitude: location.longitude,
+        latitude: location.latitude,
+        range: 0.0009,
+      });
+      newMarkers.push(animalMarker);
+    }
+    setAnimalMarkers(newMarkers);
+  };
+
+  useEffect(() => {
+    if (location?.altitude === null || location?.altitude === undefined) {
+      return;
+    }
+    if (getRandomIntInclusive(1, 100) > 90) {
+      return;
+    }
+
+    const animalMarker = generateRandomAnimalMarker({
+      longitude: location.longitude,
+      latitude: location.latitude,
+      range: 0.0009,
+    });
+    setAnimalMarkers([...animalMarkers, animalMarker]);
+  }, [location.longitude, location.latitude]);
 
   useEffect(() => {
     mapRef.current?.animateCamera(
@@ -40,6 +80,18 @@ export default function MapComponent() {
     setLocation(newLocation);
   };
 
+  const handleAnimalPress = (
+    longitude: number,
+    latitude: number,
+    animal: Animal
+  ) => {
+    const newAnimalMarkers = animalMarkers.filter(
+      (marker) => marker.animal.id !== animal.id
+    );
+    setAnimalMarkers(newAnimalMarkers);
+    animalsUpdater.addAnimal(animal);
+  };
+
   return (
     <MapView
       ref={mapRef}
@@ -57,7 +109,15 @@ export default function MapComponent() {
       showsIndoors={false}
       showsMyLocationButton={false}
       toolbarEnabled={false}
-    />
+    >
+      {animalMarkers.map((marker: AnimalMarkerProps) => (
+        <AnimalMarker
+          key={marker.animal.id}
+          {...marker}
+          onPress={handleAnimalPress}
+        />
+      ))}
+    </MapView>
   );
 }
 

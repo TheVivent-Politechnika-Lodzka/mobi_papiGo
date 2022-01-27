@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import useFirestore from '../../auth/useFirestore';
+import { View, Text, StyleSheet, Alert, Button } from 'react-native';
+import useFirestore, { useAnimals } from '../../auth/useFirestore';
+import AnimalCard from '../../components/animal-card';
+import { Animal } from '../../types';
 
 export default function AnimalsScreen() {
-  const [data, setData] = useFirestore();
-  const [animals, setAnimals] = React.useState([]);
-
-  useEffect(() => {
-    if (data.animals) {
-      setAnimals(data.animals);
-    }
-  }, [data?.animals]);
+  const [animals, animalsUpdater] = useAnimals();
 
   return (
     <View style={styles.container}>
+      <Button
+        title="test"
+        onPress={() => animalsUpdater.addAnimal(new Animal())}
+      />
       {animals.map((animal: any) => (
-        <Text key={animal.id}>{animal.name}test</Text>
+        <AnimalCard key={animal.id} animal={animal} />
       ))}
     </View>
   );

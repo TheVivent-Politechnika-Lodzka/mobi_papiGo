@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import useCurrentUser from './useCurrentUser';
-import { DbData } from '../types';
+import { Animal, DbData, Item } from '../types';
 
 // type User = FirebaseAuthTypes.User;
 type DocRef = FirebaseFirestoreTypes.DocumentReference;
@@ -20,6 +20,8 @@ export default function useFirestore(): FirestoreResult {
   useEffect(() => {
     if (user) {
       setDocRef(firestore().collection('users').doc(user.uid));
+    } else {
+      setDocRef(null);
     }
   }, [user]);
 
@@ -69,19 +71,66 @@ export default function useFirestore(): FirestoreResult {
     }
   }
 
-  // useEffect(() => {
-  //   if (userData && docRef) {
-  //     try {
-  //       docRef.update(userData);
-  //     } catch (e: any) {
-  //       Alert.alert(
-  //         'Błąd',
-  //         'Wystąpił błąd podczas aktualizacji danych użytkownika'
-  //       );
-  //     }
-  //   }
-  //   // updateUserData();
-  // }, [userData]);
-
   return [userData, updateUserData];
+}
+
+export function useUserData() {
+  const [userData] = useFirestore();
+  const data = {
+    id: userData?.id,
+    registrationDate: userData?.registrationDate,
+  };
+  return data;
+}
+
+interface ItemsUpdater {
+  addItem: (item: Item) => void;
+  removeItem: (item: Item) => void;
+  updateItem: (item: Item) => void;
+}
+type UseItemsResult = [Item[], ItemsUpdater];
+
+export function useItems(): UseItemsResult {
+  const [userData, setUserData] = useFirestore();
+  const items = userData?.items || [];
+
+  const addItem = (item: Item) => {
+    setUserData({ items: [...items, item] });
+  };
+  const removeItem = (item: Item) => {
+    setUserData({ items: items.filter((i) => i.id !== item.id) });
+  };
+  const updateItem = (item: Item) => {
+    setUserData({
+      items: items.map((i) => (i.id === item.id ? item : i)),
+    });
+  };
+
+  return [items, { addItem, removeItem, updateItem }];
+}
+
+interface AnimalsUpdater {
+  addAnimal: (item: Animal) => void;
+  removeAnimal: (item: Animal) => void;
+  updateAnimal: (item: Animal) => void;
+}
+type UseAnimalsResult = [Animal[], AnimalsUpdater];
+
+export function useAnimals(): UseAnimalsResult {
+  const [userData, setUserData] = useFirestore();
+  const animals = userData?.animals || [];
+
+  const addAnimal = (animal: Animal) => {
+    setUserData({ animals: [...animals, animal] });
+  };
+  const removeAnimal = (animal: Animal) => {
+    setUserData({ animals: animals.filter((i) => i.id !== animal.id) });
+  };
+  const updateAnimal = (animal: Animal) => {
+    setUserData({
+      animals: animals.map((i) => (i.id === animal.id ? animal : i)),
+    });
+  };
+
+  return [animals, { addAnimal, removeAnimal, updateAnimal }];
 }

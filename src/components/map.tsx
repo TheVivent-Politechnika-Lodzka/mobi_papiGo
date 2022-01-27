@@ -46,7 +46,18 @@ export default function MapComponent() {
       latitude: location.latitude,
       range: 0.0009,
     });
-    setAnimalMarkers([...animalMarkers, animalMarker]);
+    const animalMarkersCopy = [...animalMarkers, animalMarker];
+    // ograniczenie na maksymalną ilość markerów
+    if (animalMarkersCopy.length > 10) {
+      // usuń losowy marker
+      const randomIndex = getRandomIntInclusive(
+        0,
+        animalMarkersCopy.length - 1
+      );
+      animalMarkersCopy.splice(randomIndex, 1);
+    }
+
+    setAnimalMarkers(animalMarkersCopy);
   }, [location.longitude, location.latitude]);
 
   useEffect(() => {

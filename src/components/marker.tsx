@@ -1,9 +1,8 @@
 import React from 'react';
-import { Alert, View } from 'react-native';
-import { Text } from 'react-native-elements';
+import { Pressable, View } from 'react-native';
 import { Avatar } from 'react-native-elements/dist/avatar/Avatar';
-import { Callout, Marker } from 'react-native-maps';
-import { Animal } from '../types';
+import { Marker } from 'react-native-maps';
+import { Animal, Item } from '../types';
 import { ANIMAL_NAMES } from '../utils/names';
 import {
   getRandomIntInclusive,
@@ -47,13 +46,19 @@ export interface AnimalMarkerProps {
   animal: Animal;
   latitude: number;
   longitude: number;
+  onPress?: (longitude: number, latitude: number, animal: Animal) => void;
 }
 
 export function AnimalMarker(props: AnimalMarkerProps) {
   const img = props.animal.type === 'cat' ? catImg : dogImg;
 
+  const handlePress = () => {
+    props.onPress(props.longitude, props.latitude, props.animal);
+  };
+
   return (
     <Marker
+      onPress={handlePress}
       coordinate={{
         latitude: props.latitude,
         longitude: props.longitude,
@@ -62,30 +67,33 @@ export function AnimalMarker(props: AnimalMarkerProps) {
       <View>
         <Avatar size={48} source={img} />
       </View>
-      <Callout tooltip>
-        <Text>{props.animal.name}</Text>
-      </Callout>
     </Marker>
   );
 }
 
 interface ItemMarkerProps {
-  item: Animal;
+  item: Item;
   latitude: number;
   longitude: number;
+  onPress?: (longitude: number, latitude: number, item: Item) => void;
 }
 export function ItemMarker(props: ItemMarkerProps) {
+  const handlePress = () => {
+    props.onPress(props.longitude, props.latitude, props.item);
+  };
+
   return (
     <Marker
+      onPress={handlePress}
       image={collarImg}
       coordinate={{
         latitude: props.latitude,
         longitude: props.longitude,
       }}
     >
-      <Callout tooltip>
-        <Text>{props.item.name}</Text>
-      </Callout>
+      <View>
+        <Avatar size={48} source={collarImg} />
+      </View>
     </Marker>
   );
 }

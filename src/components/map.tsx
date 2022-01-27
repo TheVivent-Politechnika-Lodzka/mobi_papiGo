@@ -7,6 +7,8 @@ import {
   AnimalMarker,
 } from './marker';
 import { Animal } from '../types';
+import { useAnimals } from '../auth/useFirestore';
+import { getRandomIntInclusive } from '../utils/randomizer';
 interface Location {
   latitude: number;
   longitude: number;
@@ -19,6 +21,7 @@ interface Location {
 }
 
 export default function MapComponent() {
+  const [animals, animalsUpdater] = useAnimals();
   const mapRef = useRef<MapView>(null);
   const [location, setLocation] = React.useState<Location>({} as Location);
   const [animalMarkers, setAnimalMarkers] = React.useState<AnimalMarkerProps[]>(
@@ -31,27 +34,27 @@ export default function MapComponent() {
       const animalMarker = generateRandomAnimalMarker({
         longitude: location.longitude,
         latitude: location.latitude,
-        range: 0.0005,
+        range: 0.0009,
       });
       newMarkers.push(animalMarker);
     }
-    // const testAnimal = new Animal();
-    // testAnimal.name = 'test';
-    // testAnimal.type = 'cat';
-    // newMarkers.push({
-    //   longitude: location.longitude,
-    //   latitude: location.latitude,
-    //   animal: testAnimal,
-    // });
-    // Alert.alert('Ja', JSON.stringify(location.latitude));
-    // Alert.alert('Zwierze', JSON.stringify(newMarkers[0].latitude));
     setAnimalMarkers(newMarkers);
   };
 
   useEffect(() => {
-    if (location?.altitude !== null && location?.altitude !== undefined) {
-      generateMarkers();
+    if (location?.altitude === null || location?.altitude === undefined) {
+      return;
     }
+    if (getRandomIntInclusive(1, 100) > 90) {
+      return;
+    }
+
+    const animalMarker = generateRandomAnimalMarker({
+      longitude: location.longitude,
+      latitude: location.latitude,
+      range: 0.0009,
+    });
+    setAnimalMarkers([...animalMarkers, animalMarker]);
   }, [location.longitude, location.latitude]);
 
   useEffect(() => {
@@ -73,15 +76,20 @@ export default function MapComponent() {
   }, [location]);
 
   const updateLocation = (e: EventUserLocation) => {
-    // if (
-    //   location?.altitude !== null &&
-    //   location?.altitude !== undefined &&
-    //   animalMarkers.length === 0
-    // ) {
-    //   generateMarkers();
-    // }
     const newLocation: Location = e.nativeEvent.coordinate;
     setLocation(newLocation);
+  };
+
+  const handleAnimalPress = (
+    longitude: number,
+    latitude: number,
+    animal: Animal
+  ) => {
+    const newAnimalMarkers = animalMarkers.filter(
+      (marker) => marker.animal.id !== animal.id
+    );
+    setAnimalMarkers(newAnimalMarkers);
+    animalsUpdater.addAnimal(animal);
   };
 
   return (
@@ -103,7 +111,11 @@ export default function MapComponent() {
       toolbarEnabled={false}
     >
       {animalMarkers.map((marker: AnimalMarkerProps) => (
-        <AnimalMarker key={marker.animal.id} {...marker} />
+        <AnimalMarker
+          key={marker.animal.id}
+          {...marker}
+          onPress={handleAnimalPress}
+        />
       ))}
     </MapView>
   );

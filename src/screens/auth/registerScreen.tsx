@@ -2,8 +2,9 @@ import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
-import TextInput from '../../components/text-input';
-import Button from '../../components/button';
+// import TextInput from '../../components/text-input';
+// import Button from '../../components/button';
+import { Input, Button } from 'react-native-elements';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -34,35 +35,126 @@ export default function RegisterScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.input_container}>
-        <TextInput
+        {/* <TextInput
           keyboardType="email-address"
           placeholder="e-mail"
           autoComplete="email"
           defaultValue={email}
           onChangeText={(newText) => setEmail(newText)}
+        /> */}
+        <Input
+          placeholder="adres@pocztowy.pl"
+          label="E-mail"
+          containerStyle={{
+            backgroundColor: '#C8E3D4',
+            borderRadius: 20,
+            marginBottom: '10%',
+            marginTop: '15%',
+          }}
+          labelStyle={{
+            marginTop: 10,
+            color: '#000',
+          }}
+          leftIcon={{
+            type: 'entypo',
+            name: 'mail',
+          }}
+          keyboardType="email-address"
+          autoComplete="email"
+          defaultValue={email}
+          onChangeText={(newText) => setEmail(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <TextInput
+        {/* <TextInput
           placeholder="hasło"
           autoComplete="password"
           secureTextEntry={true}
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
+        /> */}
+        <Input
+          placeholder="Hasło"
+          label="Hasło"
+          containerStyle={{
+            backgroundColor: '#C8E3D4',
+            borderRadius: 20,
+            marginBottom: '20%',
+          }}
+          labelStyle={{
+            marginTop: 10,
+            color: '#000',
+          }}
+          leftIcon={{ type: 'entypo', name: 'key' }}
+          autoComplete="password"
+          secureTextEntry={true}
+          defaultValue={password}
+          onChangeText={(newText) => setPassword(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <TextInput
+        {/* <TextInput
           placeholder="powtórz hasło"
           autoComplete="password"
           secureTextEntry={true}
           defaultValue={passwordConfirm}
           onChangeText={(newText) => setPasswordConfirm(newText)}
+        /> */}
+        <Input
+          placeholder="Hasło"
+          label="Powtórz hasło"
+          containerStyle={{
+            backgroundColor: '#C8E3D4',
+            borderRadius: 20,
+            marginBottom: '20%',
+          }}
+          labelStyle={{
+            marginTop: 10,
+            color: '#000',
+          }}
+          leftIcon={{ type: 'entypo', name: 'key' }}
+          autoComplete="password"
+          secureTextEntry={true}
+          defaultValue={password}
+          onChangeText={(newText) => setPasswordConfirm(newText)}
         />
-      </View>
-      <View style={styles.input_container}>
-        <Button value="Zarejestruj" onPress={handleRegister} />
-        <Button value="Zarejstruj z Google" onPress={handleGoogleRegister} />
+        {/* <Button value="Zarejestruj" onPress={handleRegister} />
+        <Button value="Zarejstruj z Google" onPress={handleGoogleRegister} /> */}
+        <Button
+          title="Zaloguj"
+          buttonStyle={{
+            backgroundColor: '#C8E3D4',
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 30,
+          }}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{
+            fontWeight: 'bold',
+            color: '#000',
+          }}
+          onPress={handleRegister}
+        />
+        <Button
+          title="Zaloguj z Google"
+          buttonStyle={{
+            backgroundColor: '#C8E3D4',
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 30,
+            marginBottom: '10%',
+          }}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{
+            fontWeight: 'bold',
+            color: '#000',
+          }}
+          onPress={handleGoogleRegister}
+        />
       </View>
     </View>
   );
@@ -80,16 +172,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
-  },
-  input: {
     width: '80%',
-    height: 40,
-    backgroundColor: '#ddd',
-
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    borderRadius: 5,
   },
 });

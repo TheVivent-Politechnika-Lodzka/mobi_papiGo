@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import React from 'react';
 import { View, Alert } from 'react-native';
-import TextInput from '../../components/text-input';
-// import Button from '../../components/button';
 import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 import { Input, Button, Avatar } from 'react-native-elements';
 

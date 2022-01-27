@@ -5,6 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import org.linusu.RNGetRandomValuesPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;

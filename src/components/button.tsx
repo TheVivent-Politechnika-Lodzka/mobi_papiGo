@@ -26,16 +26,19 @@ export default function Button(props: ButtonProps) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    margin: 2,
+    margin: 20,
     elevation: 8,
-    backgroundColor: '#009688',
-    borderRadius: 10,
+    backgroundColor: '#C8E3D4',
+    height: 62,
+    width: 258,
+    borderBottomRightRadius: 27.5,
+    borderTopLeftRadius: 27.5,
     paddingVertical: 10,
     paddingHorizontal: 12,
   },
   buttonText: {
-    fontSize: 18,
-    color: '#fff',
+    fontSize: 30,
+    color: '#000',
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',

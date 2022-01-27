@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { StyleSheet, View, Button, ImageBackground } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
+// import Button from '../../components/button';
+
+import { Button } from 'react-native-elements/dist/buttons/Button';
 
 const logoImage = require('./../../../assets/logo.png');
 
@@ -23,11 +26,49 @@ export default function LandingScreen({ navigation }: any) {
           resizeMode="contain"
         />
       </View>
+
+      {/* <Button value="Logowanie" onPress={login} /> */}
       <View style={styles.button_container}>
-        <Button title="Logowanie" onPress={login} />
-      </View>
-      <View style={styles.button_container}>
-        <Button title="Rejestracja" onPress={register} />
+        <Button
+          title="Logowanie"
+          buttonStyle={{
+            backgroundColor: '#C8E3D4',
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 30,
+          }}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{ fontWeight: 'bold', color: '#000' }}
+          onPress={login}
+        />
+
+        {/* <Pressable style={styles.button} onPress={login}>
+          <Text style={styles.button_text}>Logowanie</Text>
+        </Pressable> */}
+
+        <Button
+          title="Rejestracja"
+          buttonStyle={{
+            backgroundColor: '#C8E3D4',
+            borderWidth: 1,
+            borderColor: 'white',
+            borderRadius: 30,
+          }}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 50,
+            marginVertical: 10,
+          }}
+          titleStyle={{
+            fontWeight: 'bold',
+            color: '#000',
+          }}
+          onPress={register}
+        />
       </View>
     </View>
   );
@@ -54,14 +95,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button_container: {
-    flex: 1,
     marginHorizontal: 'auto',
     backgroundColor: 'rgba(255,255,255,0)',
-    width: '60%',
-    height: 40,
+    marginBottom: 100,
   },
   button: {
-    backgroundColor: '#C8E3D4',
+    backgroundColor: 'rgba(17,255,7,0.5)',
+    // backgroundColor: '#C8E3D4',
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: '#7879F1',

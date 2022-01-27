@@ -2,6 +2,7 @@ import React from 'react';
 import { Animal } from '../types';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 
 interface Props {
   animal: Animal;
@@ -16,12 +17,28 @@ export default function AnimalCard(props: Props) {
   const image = type === 'cat' ? catImg : dogImg;
 
   return (
-    <View style={styles.container}>
-      <Avatar rounded size={64} source={image}>
-        {hasItem && <Avatar.Accessory size={32} />}
-      </Avatar>
-      <Text style={styles.name}>{name}</Text>
-    </View>
+    // <View style={styles.container}>
+    //   <Avatar rounded size={64} source={image}>
+    //     {hasItem && <Avatar.Accessory size={32} />}
+    //   </Avatar>
+    //   <Text style={styles.name}>{name}</Text>
+
+    // </View>
+
+    <Card
+      containerStyle={{
+        flex: 1,
+        width: '80%',
+        margin: '10%',
+        height: '90%',
+      }}
+    >
+      <Card.Title>{name}</Card.Title>
+      <Card.Divider />
+      <Card.Image source={image} />
+      <Text>{type}</Text>
+      <Text>{stars}</Text>
+    </Card>
   );
 }
 

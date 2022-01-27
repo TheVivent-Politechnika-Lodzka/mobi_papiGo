@@ -28,21 +28,21 @@ export default function NavBar(props: NavProps) {
   return (
     <View style={styles.container}>
       <Button
-        title={<Image source={lapaImg} style={{ width: 60, height: 60 }} />}
+        title={<Image source={lapaImg} style={{ width: 50, height: 50 }} />}
         containerStyle={styles.navButton}
-        buttonStyle={{ backgroundColor: '#C8E3D4' }}
+        buttonStyle={{ backgroundColor: '#C8E3D4', height: '100%' }}
         onPress={() => moveToScreen('Animals')}
       />
       <Button
-        title={<Image source={logoImg} style={{ width: 60, height: 60 }} />}
+        title={<Image source={logoImg} style={{ width: 50, height: 50 }} />}
         containerStyle={styles.navButton}
-        buttonStyle={{ backgroundColor: '#C8E3D4' }}
+        buttonStyle={{ backgroundColor: '#C8E3D4', height: '100%' }}
         onPress={() => moveToScreen(user ? 'User' : 'Map')}
       />
       <Button
-        title={<Image source={plecakImg} style={{ width: 60, height: 60 }} />}
+        title={<Image source={plecakImg} style={{ width: 50, height: 50 }} />}
         containerStyle={styles.navButton}
-        buttonStyle={{ backgroundColor: '#C8E3D4' }}
+        buttonStyle={{ backgroundColor: '#C8E3D4', height: '100%' }}
         onPress={() => moveToScreen('Inventory')}
       />
     </View>

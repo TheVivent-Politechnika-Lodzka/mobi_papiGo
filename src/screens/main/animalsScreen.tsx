@@ -1,10 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import useFirestore from '../../auth/useFirestore';
 
 export default function AnimalsScreen() {
-  const [data] = useFirestore();
-  const animals = data.animals;
+  const [data, setData] = useFirestore();
+  const [animals, setAnimals] = React.useState([]);
+
+  useEffect(() => {
+    if (data.animals) {
+      setAnimals(data.animals);
+    }
+  }, [data?.animals]);
 
   return (
     <View style={styles.container}>

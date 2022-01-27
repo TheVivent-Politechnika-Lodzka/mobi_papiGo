@@ -3,6 +3,7 @@ import useCurrentUser from '../../auth/useCurrentUser';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import { logout } from '../../auth/methods';
 import useFirestore from '../../auth/useFirestore';
+import { Item } from '../../types';
 
 export default function UserScreen() {
   const [userDb, setUserDb] = useFirestore();
@@ -32,7 +33,7 @@ export default function UserScreen() {
       <Text>{user.displayName}</Text>
       <Button title="Wyloguj" onPress={logout} />
       <Text>{JSON.stringify(userDb)}</Text>
-      <Button title="test" onPress={() => setUserDb({ taboret: false })} />
+      <Button title="test" onPress={() => setUserDb({ items: [new Item()] })} />
     </View>
   );
 }

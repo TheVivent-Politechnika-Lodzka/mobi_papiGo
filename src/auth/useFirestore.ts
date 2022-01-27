@@ -3,17 +3,19 @@ import { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import useCurrentUser from './useCurrentUser';
-import { Alert } from 'react-native';
+import { DbData } from '../types';
 
 // type User = FirebaseAuthTypes.User;
 type DocRef = FirebaseFirestoreTypes.DocumentReference;
 
+type FirestoreResult = [DbData | null, (data: Partial<DbData>) => void];
+
 // cała ta funkcja jest brzydka, ale działa nieźle
 // można wrzucić cokolwiek, a zwróci zawsze poprawny obiekt z bazy
-export default function useFirestore() {
+export default function useFirestore(): FirestoreResult {
   const user = useCurrentUser();
   const [docRef, setDocRef] = useState<DocRef | null>(null);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<DbData | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -30,7 +32,7 @@ export default function useFirestore() {
       try {
         const doc = await docRef.get();
         if (doc.exists) {
-          setUserData(doc.data());
+          setUserData(doc.data() as DbData);
         } else {
           setInitialUserData();
         }
@@ -43,10 +45,9 @@ export default function useFirestore() {
 
   const setInitialUserData = async () => {
     if (docRef && user) {
-      docRef.set({
-        id: user.uid,
-        registrationDate: new Date(),
-      });
+      const data: DbData = new DbData();
+      data.id = user.uid;
+      docRef.set(data);
     }
   };
 
@@ -56,32 +57,31 @@ export default function useFirestore() {
       // zaaktualizuj dane użytkownika
       docRef.onSnapshot((doc) => {
         if (doc.exists) {
-          setUserData(doc.data());
+          setUserData(doc.data() as DbData);
         }
       });
     }
   };
 
-  //   const updateUserData = async () => {
-  //     if (userData && docRef) {
-  //         const serverData = (await docRef.get()).data();
-  //         setUserData(serverData);
-  //     }
-  // };
-
-  useEffect(() => {
+  async function updateUserData(data: Partial<DbData>) {
     if (userData && docRef) {
-      try {
-        docRef.update(userData);
-      } catch (e: any) {
-        Alert.alert(
-          'Błąd',
-          'Wystąpił błąd podczas aktualizacji danych użytkownika'
-        );
-      }
+      return docRef.update(data);
     }
-    // updateUserData();
-  }, [userData]);
+  }
 
-  return [userData, setUserData];
+  // useEffect(() => {
+  //   if (userData && docRef) {
+  //     try {
+  //       docRef.update(userData);
+  //     } catch (e: any) {
+  //       Alert.alert(
+  //         'Błąd',
+  //         'Wystąpił błąd podczas aktualizacji danych użytkownika'
+  //       );
+  //     }
+  //   }
+  //   // updateUserData();
+  // }, [userData]);
+
+  return [userData, updateUserData];
 }

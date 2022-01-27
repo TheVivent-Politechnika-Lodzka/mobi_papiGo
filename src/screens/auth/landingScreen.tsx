@@ -25,16 +25,9 @@ export default function LandingScreen({ navigation }: any) {
       </View>
       <View style={styles.button_container}>
         <Button title="Logowanie" onPress={login} />
-
-        {/* <Pressable style={styles.button} onPress={login}>
-          <Text style={styles.button_text}>Logowanie</Text>
-        </Pressable> */}
       </View>
       <View style={styles.button_container}>
         <Button title="Rejestracja" onPress={register} />
-        {/* <Pressable style={styles.button} onPress={register}>
-          <Text style={styles.button_text}>Rejestracja</Text>
-        </Pressable> */}
       </View>
     </View>
   );

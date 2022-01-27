@@ -32,7 +32,7 @@ export default function UserScreen() {
       <Text>{user.displayName}</Text>
       <Button title="Wyloguj" onPress={logout} />
       <Text>{JSON.stringify(userDb)}</Text>
-      <Button title="test" onPress={() => setUserDb({ pies: 'kot' })} />
+      <Button title="test" onPress={() => setUserDb({ taboret: false })} />
     </View>
   );
 }

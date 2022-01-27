@@ -4,11 +4,14 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../App';
+// import { registerWithEmail } from '../src/auth/methods';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+import UserScreen from '../src/screens/main/userScreen';
+import MapComponent from '../src/components/map';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+it('register with email negative', () => {
+  renderer.create(<MapComponent />);
+  // expect(registerWithEmail('', '')).toBe(null);
 });

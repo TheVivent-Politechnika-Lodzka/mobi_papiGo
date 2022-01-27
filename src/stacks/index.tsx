@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import LoginScreen from '../../screens/auth/loginScreen';
-import RegisterScreen from '../../screens/auth/registerScreen';
-import LandingScreen from '../../screens/auth/landingScreen';
-import MapScreen from '../../screens/main/mapScreen';
-import UserScreen from '../../screens/main/userScreen';
-import useFirestore from '../useFirestore';
+import LoginScreen from '../screens/auth/loginScreen';
+import RegisterScreen from '../screens/auth/registerScreen';
+import LandingScreen from '../screens/auth/landingScreen';
+import MapScreen from '../screens/main/mapScreen';
+import UserScreen from '../screens/main/userScreen';
+import useFirestore from '../auth/useFirestore';
 
 const MainStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();

@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import React from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
-
+import { View, Alert } from 'react-native';
+import TextInput from '../../components/text-input';
+import Button from '../../components/button';
 import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 
 export default function LoginScreen() {
@@ -21,7 +22,6 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <View style={styles.input_container}>
         <TextInput
-          style={styles.input}
           keyboardType="email-address"
           placeholder="e-mail"
           autoComplete="email"
@@ -31,7 +31,6 @@ export default function LoginScreen() {
       </View>
       <View style={styles.input_container}>
         <TextInput
-          style={styles.input}
           placeholder="hasło"
           autoComplete="password"
           secureTextEntry={true}
@@ -40,8 +39,8 @@ export default function LoginScreen() {
         />
       </View>
       <View style={styles.input_container}>
-        <Button title="Zaloguj" onPress={login} />
-        <Button title="Zaloguj z Google" onPress={authenticateWithGoogle} />
+        <Button value="Zaloguj" onPress={login} />
+        <Button value="Zaloguj z Google" onPress={authenticateWithGoogle} />
       </View>
     </View>
   );
@@ -60,15 +59,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-  },
-  input: {
-    width: '80%',
-    height: 40,
-    backgroundColor: '#ddd',
-
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    borderRadius: 5,
   },
 });

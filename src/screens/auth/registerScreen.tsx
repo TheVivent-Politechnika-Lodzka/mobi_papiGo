@@ -1,8 +1,9 @@
-import { Alert, Button, StyleSheet } from 'react-native';
-
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
+import TextInput from '../../components/text-input';
+import Button from '../../components/button';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -34,7 +35,6 @@ export default function RegisterScreen() {
     <View style={styles.container}>
       <View style={styles.input_container}>
         <TextInput
-          style={styles.input}
           keyboardType="email-address"
           placeholder="e-mail"
           autoComplete="email"
@@ -44,7 +44,6 @@ export default function RegisterScreen() {
       </View>
       <View style={styles.input_container}>
         <TextInput
-          style={styles.input}
           placeholder="hasło"
           autoComplete="password"
           secureTextEntry={true}
@@ -54,7 +53,6 @@ export default function RegisterScreen() {
       </View>
       <View style={styles.input_container}>
         <TextInput
-          style={styles.input}
           placeholder="powtórz hasło"
           autoComplete="password"
           secureTextEntry={true}
@@ -63,8 +61,8 @@ export default function RegisterScreen() {
         />
       </View>
       <View style={styles.input_container}>
-        <Button title="Zarejestruj" onPress={handleRegister} />
-        <Button title="Zarejstruj z Google" onPress={handleGoogleRegister} />
+        <Button value="Zarejestruj" onPress={handleRegister} />
+        <Button value="Zarejstruj z Google" onPress={handleGoogleRegister} />
       </View>
     </View>
   );

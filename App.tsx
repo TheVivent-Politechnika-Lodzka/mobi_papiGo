@@ -4,7 +4,7 @@ import React from 'react';
 import 'react-native-gesture-handler';
 // import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AllStack from './src/auth/stacks';
+import AllStack from './src/stacks';
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 

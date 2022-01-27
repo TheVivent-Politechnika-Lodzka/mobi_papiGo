@@ -2,11 +2,10 @@ import { StyleSheet } from 'react-native';
 
 import React, { useEffect } from 'react';
 import { View, Pressable, Image, Text } from 'react-native';
-import { logout } from '../../auth/methods';
 import { PermissionsAndroid } from 'react-native';
 import { Alert } from 'react-native';
-import MapComponent from '../../components/map-component';
-import useFirestore from '../../auth/useFirestore';
+import MapComponent from '../../components/map';
+import ImageButton from '../../components/image-button';
 
 const lapaPng = require('../../../assets/lapa.png');
 const logoImg = require('../../../assets/logo.png');
@@ -56,23 +55,26 @@ export default function MapScreen({ navigation }: any) {
 
       <View pointerEvents="box-none" style={styles.overlay}>
         <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
+          <ImageButton onPress={() => Alert.alert('test 1')} src={lapaPng} />
+          {/* <View style={styles.buttonContainer}>
             <Pressable
               style={styles.button}
               onPress={() => Alert.alert('test 1')}
-            >
+              >
               <Image style={{ width: '90%', height: '90%' }} source={lapaPng} />
             </Pressable>
-          </View>
-          <View style={styles.buttonContainer}>
+          </View> */}
+          <ImageButton onPress={() => moveToScreen('User')} src={logoImg} />
+          {/* <View style={styles.buttonContainer}>
             <Pressable
-              style={styles.button}
-              onPress={() => moveToScreen('User')}
+            style={styles.button}
+            onPress={() => moveToScreen('User')}
             >
-              <Image style={{ width: '90%', height: '90%' }} source={logoImg} />
+            <Image style={{ width: '90%', height: '90%' }} source={logoImg} />
             </Pressable>
-          </View>
-          <View style={styles.buttonContainer}>
+          </View> */}
+          <ImageButton onPress={() => Alert.alert('test 3')} src={plecakImg} />
+          {/* <View style={styles.buttonContainer}>
             <Pressable
               style={styles.button}
               onPress={() => Alert.alert('test 3')}
@@ -82,7 +84,7 @@ export default function MapScreen({ navigation }: any) {
                 source={plecakImg}
               />
             </Pressable>
-          </View>
+          </View> */}
         </View>
       </View>
     </View>

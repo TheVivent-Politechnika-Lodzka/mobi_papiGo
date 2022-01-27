@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import useFirestore from '../../auth/useFirestore';
 
-export default function AnimalsScreen() {
+export default function InventoryScreen() {
   const [data] = useFirestore();
-  const animals = data.animals;
+  const items = data.items;
 
   return (
     <View style={styles.container}>
-      {animals.map((animal: any) => (
-        <Text key={animal.id}>{animal.name}test</Text>
+      {items.map((item: any) => (
+        <Text key={item.id}>{item.title}test</Text>
       ))}
     </View>
   );

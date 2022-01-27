@@ -16,6 +16,10 @@ import NavBar from '../../components/navBar';
 export default function AnimalsScreen({ navigation }: any) {
   const [animals, animalsUpdater] = useAnimals();
 
+  const handlePress = (animal: Animal) => {
+    navigation.navigate('Animal', { animal });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerCards}>
@@ -25,7 +29,7 @@ export default function AnimalsScreen({ navigation }: any) {
           onPress={() => animalsUpdater.addAnimal(new Animal())}
         /> */}
           {animals.map((animal: any) => (
-            <AnimalCard key={animal.id} animal={animal} />
+            <AnimalCard key={animal.id} animal={animal} onPress={handlePress} />
           ))}
         </ScrollView>
       </View>

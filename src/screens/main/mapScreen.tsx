@@ -47,13 +47,15 @@ export default function MapScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      {geoPermGranted ? (
-        <MapComponent />
-      ) : (
-        <View style={styles.container}>
-          <Text>Musisz udostępnić lokalizację</Text>
-        </View>
-      )}
+      <View style={styles.containerCards}>
+        {geoPermGranted ? (
+          <MapComponent />
+        ) : (
+          <View style={styles.container}>
+            <Text>Musisz udostępnić lokalizację</Text>
+          </View>
+        )}
+      </View>
 
       {/* <View pointerEvents="box-none" style={styles.overlay}>
         <View style={styles.buttonsContainer}>
@@ -76,7 +78,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#87AAAA',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
+    height: '100%',
     ...StyleSheet.absoluteFillObject,
+  },
+  containerCards: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '85%',
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: '5%',
+    borderRadius: 10,
+    backgroundColor: '#F6D7A7',
   },
 
   overlay: {

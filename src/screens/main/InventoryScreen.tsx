@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import useFirestore from '../../auth/useFirestore';
+import { View, StyleSheet } from 'react-native';
+import { useItems } from '../../auth/useFirestore';
+import ItemCard from '../../components/item-card';
 
 export default function InventoryScreen() {
-  const [data] = useFirestore();
-  const items = data.items;
+  const [items, itemUpdater] = useItems();
 
   return (
     <View style={styles.container}>
       {items.map((item: any) => (
-        <Text key={item.id}>{item.title}test</Text>
+        <ItemCard key={item.id} item={item} />
       ))}
     </View>
   );

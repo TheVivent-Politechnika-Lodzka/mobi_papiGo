@@ -85,7 +85,7 @@ export function useUserData() {
 
 interface ItemsUpdater {
   addItem: (item: Item) => void;
-  removeItem: (item: Item) => void;
+  removeItem: (id: string) => void;
   updateItem: (item: Item) => void;
 }
 type UseItemsResult = [Item[], ItemsUpdater];
@@ -97,8 +97,8 @@ export function useItems(): UseItemsResult {
   const addItem = (item: Item) => {
     setUserData({ items: [...items, item] });
   };
-  const removeItem = (item: Item) => {
-    setUserData({ items: items.filter((i) => i.id !== item.id) });
+  const removeItem = (id: string) => {
+    setUserData({ items: items.filter((i) => i.id !== id) });
   };
   const updateItem = (item: Item) => {
     setUserData({
@@ -111,7 +111,7 @@ export function useItems(): UseItemsResult {
 
 interface AnimalsUpdater {
   addAnimal: (item: Animal) => void;
-  removeAnimal: (item: Animal) => void;
+  removeAnimal: (id: string) => void;
   updateAnimal: (item: Animal) => void;
 }
 type UseAnimalsResult = [Animal[], AnimalsUpdater];
@@ -123,8 +123,8 @@ export function useAnimals(): UseAnimalsResult {
   const addAnimal = (animal: Animal) => {
     setUserData({ animals: [...animals, animal] });
   };
-  const removeAnimal = (animal: Animal) => {
-    setUserData({ animals: animals.filter((i) => i.id !== animal.id) });
+  const removeAnimal = (id: string) => {
+    setUserData({ animals: animals.filter((i) => i.id !== id) });
   };
   const updateAnimal = (animal: Animal) => {
     setUserData({

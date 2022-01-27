@@ -6,7 +6,6 @@ module.exports = {
   // automock: true,
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx,js,jsx}',
-    'src/screens/**/*.{ts,tsx,js,jsx}',
     '!src/components/**/*.d.ts',
   ],
   transformIgnorePatterns: [],

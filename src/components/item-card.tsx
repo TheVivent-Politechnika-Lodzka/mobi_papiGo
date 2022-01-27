@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 interface Props {
   item: Item;
+  onPress: (item: Item) => void;
 }
 
 const itemImg = require('../../assets/collar.png');
@@ -28,6 +29,7 @@ export default function ItemCard(props: Props) {
       <Card.Title style={{ fontSize: 20 }}>{name}</Card.Title>
       <Card.Divider />
       <Card.Image
+        onPress={() => props.onPress(props.item)}
         source={itemImg}
         style={{
           resizeMode: 'contain',

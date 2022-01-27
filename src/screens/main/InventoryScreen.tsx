@@ -13,7 +13,7 @@ export default function InventoryScreen({ navigation }: any) {
       <View style={styles.containerCards}>
         <ScrollView>
           {items.map((item: any) => (
-            <ItemCard key={item.id} item={item} />
+            <ItemCard key={item.id} item={item} onPress={() => {}} />
           ))}
         </ScrollView>
       </View>

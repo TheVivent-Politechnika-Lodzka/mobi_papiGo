@@ -6,6 +6,7 @@ import { Card } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 interface Props {
+  onPress: (animal: Animal) => void;
   animal: Animal;
 }
 
@@ -31,12 +32,13 @@ export default function AnimalCard(props: Props) {
     >
       <Card.Title style={{ fontSize: 20 }}>
         {name}{' '}
-        {item ? (
+        {hasItem ? (
           <Icon name="inbox" type="antdesign" color="black" size={17} />
         ) : null}
       </Card.Title>
       <Card.Divider />
       <Card.Image
+        onPress={() => props.onPress(props.animal)}
         source={image}
         style={{
           resizeMode: 'contain',
@@ -53,7 +55,10 @@ export default function AnimalCard(props: Props) {
               color="black"
               size={20}
             />
-            <Text style={{ marginLeft: '3%' }}>{stats.range}</Text>
+            <Text style={{ marginLeft: '3%' }}>
+              {stats.range}
+              {item?.buff.range && ` (+${item.buff.range})`}
+            </Text>
           </View>
         </View>
         <View style={styles.statContainerFirst}>
@@ -64,7 +69,10 @@ export default function AnimalCard(props: Props) {
               color="black"
               size={20}
             />
-            <Text style={{ marginLeft: '3%' }}>{stats.strength}</Text>
+            <Text style={{ marginLeft: '3%' }}>
+              {stats.strength}
+              {item?.buff.strength && ` (+${item.buff.strength})`}
+            </Text>
           </View>
         </View>
         <View style={styles.statContainerFirst}>
@@ -75,7 +83,10 @@ export default function AnimalCard(props: Props) {
               color="black"
               size={20}
             />
-            <Text style={{ marginLeft: '3%' }}>{stats.agility}</Text>
+            <Text style={{ marginLeft: '3%' }}>
+              {stats.agility}
+              {item?.buff.agility && ` (+${item.buff.agility})`}
+            </Text>
           </View>
         </View>
       </View>

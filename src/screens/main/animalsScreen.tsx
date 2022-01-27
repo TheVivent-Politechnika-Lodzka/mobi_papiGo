@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: '88%',
+    height: '85%',
     width: '90%',
     marginLeft: '5%',
     marginTop: '5%',

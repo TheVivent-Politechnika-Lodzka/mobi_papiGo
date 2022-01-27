@@ -60,7 +60,7 @@ export default function AnimalCard(props: Props) {
             />
             <Text style={{ marginLeft: '3%' }}>
               {stats.range}
-              {item?.buff.range && ` (+${item.buff.range})`}
+              {item ? ` (+${item.buff.range})` : null}
             </Text>
           </View>
         </View>
@@ -74,7 +74,7 @@ export default function AnimalCard(props: Props) {
             />
             <Text style={{ marginLeft: '3%' }}>
               {stats.strength}
-              {item?.buff.strength && ` (+${item.buff.strength})`}
+              {item ? ` (+${item.buff.strength})` : null}
             </Text>
           </View>
         </View>
@@ -88,7 +88,7 @@ export default function AnimalCard(props: Props) {
             />
             <Text style={{ marginLeft: '3%' }}>
               {stats.agility}
-              {item?.buff.agility && ` (+${item.buff.agility})`}
+              {item ? ` (+${item.buff.agility})` : null}
             </Text>
           </View>
         </View>

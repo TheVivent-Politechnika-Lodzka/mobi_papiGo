@@ -49,7 +49,7 @@ export default function RegisterScreen() {
           onChangeText={(newText) => setPasswordConfirm(newText)}
         />
         <TwoButton
-          valueOne="Zaloguj"
+          valueOne="Zarejestruj"
           valueTwo="Zaloguj z Google"
           onPressOne={handleRegister}
           onPressTwo={handleGoogleRegister}

@@ -7,6 +7,8 @@ import { Alert } from 'react-native';
 import MapComponent from '../../components/map';
 import ImageButton from '../../components/image-button';
 
+import NavBar from '../../components/navBar';
+
 const lapaImg = require('../../../assets/lapa.png');
 const logoImg = require('../../../assets/logo.png');
 const plecakImg = require('../../../assets/plecak.png');
@@ -53,7 +55,7 @@ export default function MapScreen({ navigation }: any) {
         </View>
       )}
 
-      <View pointerEvents="box-none" style={styles.overlay}>
+      {/* <View pointerEvents="box-none" style={styles.overlay}>
         <View style={styles.buttonsContainer}>
           <ImageButton onPress={() => moveToScreen('Animals')} src={lapaImg} />
           <ImageButton onPress={() => moveToScreen('User')} src={logoImg} />
@@ -62,7 +64,8 @@ export default function MapScreen({ navigation }: any) {
             src={plecakImg}
           />
         </View>
-      </View>
+      </View> */}
+      <NavBar navigation={navigation} user="test" />
     </View>
   );
 }

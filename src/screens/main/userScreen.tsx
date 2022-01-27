@@ -5,7 +5,9 @@ import { logout } from '../../auth/methods';
 import { useItems } from '../../auth/useFirestore';
 import { Item } from '../../types';
 
-export default function UserScreen() {
+import NavBar from '../../components/navBar';
+
+export default function UserScreen({ navigation }: any) {
   const [items, itemsUpdater] = useItems();
   const user = useCurrentUser();
   const [photoURL, setPhotoURL] = React.useState(
@@ -34,6 +36,7 @@ export default function UserScreen() {
       <Button title="Wyloguj" onPress={logout} />
       <Text>{JSON.stringify(items)}</Text>
       <Button title="test" onPress={() => itemsUpdater.addItem(new Item())} />
+      <NavBar navigation={navigation} />
     </View>
   );
 }

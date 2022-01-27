@@ -3,6 +3,7 @@ import { Animal } from '../types';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { Card } from 'react-native-elements';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 interface Props {
   animal: Animal;
@@ -30,19 +31,74 @@ export default function AnimalCard(props: Props) {
         flex: 1,
         width: '80%',
         margin: '10%',
-        height: '90%',
+        height: 330,
       }}
     >
       <Card.Title>{name}</Card.Title>
       <Card.Divider />
-      <Card.Image source={image} />
+      <Card.Image
+        source={image}
+        style={{
+          resizeMode: 'contain',
+          marginBottom: '3%',
+        }}
+      />
+      <Card.Divider />
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.statContainerFirst}>
+          <Icon
+            name="expand-arrows-alt"
+            type="font-awesome-5"
+            color="black"
+            size={20}
+          />
+          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+        </View>
+        <View style={styles.statContainerFirst}>
+          <Icon name="dumbbell" type="font-awesome-5" color="black" size={20} />
+          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+        </View>
+        <View style={styles.statContainerFirst}>
+          <Icon name="running" type="font-awesome-5" color="black" size={20} />
+          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.statContainerSecond}>
+          <Icon name="star" type="font-awesome" color="black" size={20} />
+          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+        </View>
+
+        <View style={styles.statContainerSecond}>
+          <Icon name="bolt" type="font-awesome" color="black" size={20} />
+          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+        </View>
+      </View>
       <Text>{type}</Text>
-      <Text>{stars}</Text>
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
+  statContainerFirst: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    width: '31%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '2%',
+    marginVertical: '2%',
+    // backgroundColor: '#87AAAA',
+  },
+  statContainerSecond: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    width: '49%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '1%',
+    // backgroundColor: '#87AAAA',
+  },
   container: {
     flex: 1,
     flexDirection: 'row',

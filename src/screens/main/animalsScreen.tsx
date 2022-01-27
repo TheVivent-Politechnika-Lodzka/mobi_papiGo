@@ -50,5 +50,10 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     height: '88%',
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: '5%',
+    borderRadius: 10,
+    backgroundColor: '#F6D7A7',
   },
 });

@@ -2,17 +2,18 @@ import React from 'react';
 import { Input } from 'react-native-elements';
 
 interface InputProps {
+  label?: string;
   defaultValue?: string;
   onChangeText: (text: string) => void;
 }
 
-export default function MailInput(props: InputProps) {
-  const { defaultValue, onChangeText } = props;
+export default function PasswordInput(props: InputProps) {
+  const { label, defaultValue, onChangeText } = props;
 
   return (
     <Input
       placeholder="Hasło"
-      label="Hasło"
+      label={label ? label : 'Hasło'}
       containerStyle={{
         backgroundColor: '#C8E3D4',
         borderRadius: 20,

@@ -7,6 +7,7 @@ import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
 import { Input, Button } from 'react-native-elements';
 import TwoButton from '../../components/twoButton';
 import MailInput from '../../components/mailInput';
+import PasswordInput from '../../components/passwordInput';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -78,7 +79,7 @@ export default function RegisterScreen() {
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
         /> */}
-        <Input
+        {/* <Input
           placeholder="Hasło"
           label="Hasło"
           containerStyle={{
@@ -95,6 +96,10 @@ export default function RegisterScreen() {
           secureTextEntry={true}
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
+        /> */}
+        <PasswordInput
+          defaultValue={password}
+          onChangeText={(newText) => setPassword(newText)}
         />
         {/* <TextInput
           placeholder="powtórz hasło"
@@ -103,7 +108,7 @@ export default function RegisterScreen() {
           defaultValue={passwordConfirm}
           onChangeText={(newText) => setPasswordConfirm(newText)}
         /> */}
-        <Input
+        {/* <Input
           placeholder="Hasło"
           label="Powtórz hasło"
           containerStyle={{
@@ -119,6 +124,11 @@ export default function RegisterScreen() {
           autoComplete="password"
           secureTextEntry={true}
           defaultValue={password}
+          onChangeText={(newText) => setPasswordConfirm(newText)}
+        /> */}
+        <PasswordInput
+          label="Powtórz hasło"
+          defaultValue={passwordConfirm}
           onChangeText={(newText) => setPasswordConfirm(newText)}
         />
         <TwoButton

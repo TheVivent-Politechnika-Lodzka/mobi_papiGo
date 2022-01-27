@@ -6,6 +6,7 @@ import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 import { Input, Button, Avatar } from 'react-native-elements';
 import TwoButton from '../../components/twoButton';
 import MailInput from '../../components/mailInput';
+import PasswordInput from '../../components/passwordInput';
 
 const logoImage = require('./../../../assets/logo.png');
 
@@ -66,7 +67,7 @@ export default function LoginScreen() {
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
         /> */}
-        <Input
+        {/* <Input
           placeholder="Hasło"
           label="Hasło"
           containerStyle={{
@@ -81,6 +82,10 @@ export default function LoginScreen() {
           leftIcon={{ type: 'entypo', name: 'key' }}
           autoComplete="password"
           secureTextEntry={true}
+          defaultValue={password}
+          onChangeText={(newText) => setPassword(newText)}
+        /> */}
+        <PasswordInput
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
         />

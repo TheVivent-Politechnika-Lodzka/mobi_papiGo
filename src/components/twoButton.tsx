@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'react-native-elements';
 import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { Text } from 'react-native';
 
 interface ButtonProps {
   valueOne: string;
@@ -34,7 +36,15 @@ export default function TwoButton(props: ButtonProps) {
         onPress={onPressOne}
       />
       <Button
-        title={valueTwo}
+        title={
+          valueTwo === 'Zaloguj z Google' ? (
+            <>
+              <Icon name="google" type="antdesign" color="black" />
+            </>
+          ) : (
+            valueTwo
+          )
+        }
         buttonStyle={{
           backgroundColor: '#C8E3D4',
           borderWidth: 1,

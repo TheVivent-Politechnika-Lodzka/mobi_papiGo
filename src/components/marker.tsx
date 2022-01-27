@@ -47,8 +47,6 @@ export function generateRandomAnimalMarker(props: MarkerGenerator) {
     props.range
   );
 
-  //   Alert.alert(`from ${props.longitude} ${props.latitude} to ${x} ${y}`);
-
   return { animal, longitude: x, latitude: y };
 }
 

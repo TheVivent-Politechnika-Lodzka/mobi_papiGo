@@ -1,25 +1,17 @@
-import { StyleSheet } from 'react-native';
-
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import { PermissionsAndroid } from 'react-native';
-import { Alert } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  PermissionsAndroid,
+  Alert,
+} from 'react-native';
 import MapComponent from '../../components/map';
-import ImageButton from '../../components/image-button';
-
 import NavBar from '../../components/navBar';
-
-const lapaImg = require('../../../assets/lapa.png');
-const logoImg = require('../../../assets/logo.png');
-const plecakImg = require('../../../assets/plecak.png');
 
 // TODO: zmienić any na coś sensownego
 export default function MapScreen({ navigation }: any) {
   const [geoPermGranted, setGeoPermGranted] = useState(false);
-
-  const moveToScreen = (screen: string) => {
-    navigation.navigate(screen);
-  };
 
   useEffect(() => {
     grantGPSPermission();
@@ -40,8 +32,8 @@ export default function MapScreen({ navigation }: any) {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setGeoPermGranted(true);
       }
-    } catch (err) {
-      Alert.alert(err);
+    } catch (err: any) {
+      Alert.alert('Error', JSON.stringify(err));
     }
   };
 
@@ -57,16 +49,6 @@ export default function MapScreen({ navigation }: any) {
         )}
       </View>
 
-      {/* <View pointerEvents="box-none" style={styles.overlay}>
-        <View style={styles.buttonsContainer}>
-          <ImageButton onPress={() => moveToScreen('Animals')} src={lapaImg} />
-          <ImageButton onPress={() => moveToScreen('User')} src={logoImg} />
-          <ImageButton
-            onPress={() => moveToScreen('Inventory')}
-            src={plecakImg}
-          />
-        </View>
-      </View> */}
       <NavBar navigation={navigation} user="test" />
     </View>
   );
@@ -87,10 +69,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: '85%',
-    width: '90%',
-    marginLeft: '5%',
-    marginTop: '5%',
+    height: '100%',
+    width: '100%',
     borderRadius: 10,
     backgroundColor: '#F6D7A7',
   },

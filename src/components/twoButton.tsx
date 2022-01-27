@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'react-native-elements';
 import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Text } from 'react-native';
 
 interface ButtonProps {
   valueOne: string;

@@ -131,66 +131,42 @@ export default function MapComponent() {
   };
 
   return (
-    <>
-      <Pressable style={styles.debugButton} onPress={generateAnimalMarker}>
-        <Text>generuj zwierzaka</Text>
-      </Pressable>
-      <Pressable style={styles.debugButton2} onPress={generateItemMarker}>
-        <Text>generuj obrożę</Text>
-      </Pressable>
-      <MapView
-        ref={mapRef}
-        style={styles.map}
-        onUserLocationChange={updateLocation}
-        //  consts:
-        showsUserLocation={true}
-        userLocationPriority="high"
-        userLocationUpdateInterval={500}
-        userLocationFastestInterval={500}
-        provider={PROVIDER_GOOGLE}
-        showsCompass={false}
-        showsScale={false}
-        showsPointsOfInterest={false}
-        showsIndoors={false}
-        showsMyLocationButton={false}
-        toolbarEnabled={false}
-      >
-        {animalMarkers.map((marker: AnimalMarkerProps) => (
-          <AnimalMarker
-            key={marker.animal.id}
-            {...marker}
-            onPress={handleAnimalPress}
-          />
-        ))}
-        {itemMarkers.map((marker: ItemMarkerProps) => (
-          <ItemMarker
-            key={marker.item.id}
-            {...marker}
-            onPress={handleItemPress}
-          />
-        ))}
-      </MapView>
-    </>
+    <MapView
+      ref={mapRef}
+      style={styles.map}
+      onUserLocationChange={updateLocation}
+      //  consts:
+      showsUserLocation={true}
+      userLocationPriority="high"
+      userLocationUpdateInterval={500}
+      userLocationFastestInterval={500}
+      provider={PROVIDER_GOOGLE}
+      showsCompass={false}
+      showsScale={false}
+      showsPointsOfInterest={false}
+      showsIndoors={false}
+      showsMyLocationButton={false}
+      toolbarEnabled={false}
+    >
+      {animalMarkers.map((marker: AnimalMarkerProps) => (
+        <AnimalMarker
+          key={marker.animal.id}
+          {...marker}
+          onPress={handleAnimalPress}
+        />
+      ))}
+      {itemMarkers.map((marker: ItemMarkerProps) => (
+        <ItemMarker
+          key={marker.item.id}
+          {...marker}
+          onPress={handleItemPress}
+        />
+      ))}
+    </MapView>
   );
 }
 
 const styles = StyleSheet.create({
-  debugButton: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    backgroundColor: 'red',
-    padding: 10,
-    zIndex: 10000,
-  },
-  debugButton2: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    backgroundColor: 'red',
-    padding: 10,
-    zIndex: 10000,
-  },
   map: {
     ...StyleSheet.absoluteFillObject,
   },

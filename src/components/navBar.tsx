@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Pressable,
-  Text,
-  StyleProp,
-  ViewStyle,
-  View,
-  Alert,
-} from 'react-native';
-import { Button, Avatar, Image } from 'react-native-elements';
+import { StyleSheet, View } from 'react-native';
+import { Button, Image } from 'react-native-elements';
 
 const lapaImg = require('../../assets/lapa.png');
 const logoImg = require('../../assets/logo.png');

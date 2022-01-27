@@ -1,13 +1,6 @@
-import React, { useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Alert,
-  Button,
-  ScrollView,
-} from 'react-native';
-import useFirestore, { useAnimals } from '../../auth/useFirestore';
+import React from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { useAnimals } from '../../auth/useFirestore';
 import AnimalCard from '../../components/animal-card';
 import { Animal } from '../../types';
 

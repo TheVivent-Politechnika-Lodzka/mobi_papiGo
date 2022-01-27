@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Animal, Item } from '../../types';
@@ -6,19 +5,12 @@ import { useAnimals, useItems } from '../../auth/useFirestore';
 import ItemCard from '../../components/item-card';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Avatar, Icon, Button } from 'react-native-elements';
-import useCurrentUser from '../../auth/useCurrentUser';
 
 import NavBar from '../../components/navBar';
 
 const catImg = require('../../../assets/cat.png');
 const dogImg = require('../../../assets/dog.png');
 const collarImg = require('../../../assets/collar.png');
-
-type Params = {
-  animal: Animal;
-};
-
-type Props = NativeStackScreenProps<Params, 'Animal'>;
 
 export default function AnimalScreen({ route, navigation }: any) {
   const [animals, animalsUpdater] = useAnimals();

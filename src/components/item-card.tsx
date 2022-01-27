@@ -1,7 +1,6 @@
 import React from 'react';
-import { Animal, Item } from '../types';
+import { Item } from '../types';
 import { View, Text, StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-elements';
 import { Card } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 

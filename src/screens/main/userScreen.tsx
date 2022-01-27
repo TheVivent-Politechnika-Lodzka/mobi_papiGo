@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import useCurrentUser from '../../auth/useCurrentUser';
 import { View, Text, StyleSheet } from 'react-native';
 import { logout } from '../../auth/methods';
-
 import NavBar from '../../components/navBar';
 import { Avatar, Input, Button } from 'react-native-elements';
-import { set } from 'react-native-reanimated';
 
 export default function UserScreen({ navigation }: any) {
   const user = useCurrentUser();

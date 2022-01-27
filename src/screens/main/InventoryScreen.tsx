@@ -3,7 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import { useItems } from '../../auth/useFirestore';
 import ItemCard from '../../components/item-card';
 
-export default function InventoryScreen() {
+import NavBar from '../../components/navBar';
+
+export default function InventoryScreen({ navigation }: any) {
   const [items, itemUpdater] = useItems();
 
   return (
@@ -11,6 +13,7 @@ export default function InventoryScreen() {
       {items.map((item: any) => (
         <ItemCard key={item.id} item={item} />
       ))}
+      <NavBar navigation={navigation} />
     </View>
   );
 }

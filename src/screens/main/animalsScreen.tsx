@@ -4,7 +4,9 @@ import useFirestore, { useAnimals } from '../../auth/useFirestore';
 import AnimalCard from '../../components/animal-card';
 import { Animal } from '../../types';
 
-export default function AnimalsScreen() {
+import NavBar from '../../components/navBar';
+
+export default function AnimalsScreen({ navigation }: any) {
   const [animals, animalsUpdater] = useAnimals();
 
   return (
@@ -16,6 +18,7 @@ export default function AnimalsScreen() {
       {animals.map((animal: any) => (
         <AnimalCard key={animal.id} animal={animal} />
       ))}
+      <NavBar navigation={navigation} />
     </View>
   );
 }

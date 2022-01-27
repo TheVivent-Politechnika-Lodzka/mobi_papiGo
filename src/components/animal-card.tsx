@@ -18,6 +18,9 @@ export default function AnimalCard(props: Props) {
     props.animal;
   const hasItem = item !== null;
   const image = type === 'cat' ? catImg : dogImg;
+  // const itemBuffAgilityExists = item?.buff.agility !== 0;
+  // const itemBuffStrengthExists = item?.buff.strength !== 0;
+  // const itemBuffRangeExists = item?.buff.range !== 0;
 
   return (
     <Card

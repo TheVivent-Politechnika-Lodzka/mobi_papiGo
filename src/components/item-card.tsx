@@ -2,6 +2,8 @@ import React from 'react';
 import { Animal, Item } from '../types';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { Card } from 'react-native-elements';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 interface Props {
   item: Item;
@@ -13,14 +15,103 @@ export default function ItemCard(props: Props) {
   const { name, stars, buff } = props.item;
 
   return (
-    <View style={styles.container}>
-      <Avatar rounded size={64} source={itemImg} />
-      <Text style={styles.name}>{name}</Text>
-    </View>
+    <Card
+      containerStyle={{
+        flex: 1,
+        width: '80%',
+        margin: '10%',
+        height: 350,
+        backgroundColor: '#F6EABE',
+        borderRadius: 10,
+      }}
+    >
+      <Card.Title style={{ fontSize: 20 }}>{name}</Card.Title>
+      <Card.Divider />
+      <Card.Image
+        source={itemImg}
+        style={{
+          resizeMode: 'contain',
+          marginBottom: '3%',
+        }}
+      />
+      <Card.Divider />
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.statContainerFirst}>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="expand-arrows-alt"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{buff.range}</Text>
+          </View>
+        </View>
+        <View style={styles.statContainerFirst}>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="dumbbell"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{buff.strength}</Text>
+          </View>
+        </View>
+        <View style={styles.statContainerFirst}>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="running"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{buff.agility}</Text>
+          </View>
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.statContainerSecond}>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon name="star" type="font-awesome" color="black" size={20} />
+            <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          </View>
+        </View>
+      </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
+  backGroundStatsContainer: {
+    backgroundColor: '#C8E3D4',
+    borderRadius: 10,
+    width: '90%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '8%',
+  },
+  statContainerFirst: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    width: '31%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '2%',
+    marginVertical: '2%',
+    // backgroundColor: '#87AAAA',
+  },
+  statContainerSecond: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: '25%',
+    marginVertical: '2%',
+    // backgroundColor: '#87AAAA',
+  },
   container: {
     flex: 1,
     flexDirection: 'row',

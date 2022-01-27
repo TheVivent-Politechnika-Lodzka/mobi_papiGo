@@ -13,28 +13,28 @@ const dogImg = require('../../assets/dog.png');
 const catImg = require('../../assets/cat.png');
 
 export default function AnimalCard(props: Props) {
-  const { name, type, stars, item } = props.animal;
+  const { name, type, stars, item, stats, currentEnergy, maxEnergy } =
+    props.animal;
   const hasItem = item !== null;
   const image = type === 'cat' ? catImg : dogImg;
 
   return (
-    // <View style={styles.container}>
-    //   <Avatar rounded size={64} source={image}>
-    //     {hasItem && <Avatar.Accessory size={32} />}
-    //   </Avatar>
-    //   <Text style={styles.name}>{name}</Text>
-
-    // </View>
-
     <Card
       containerStyle={{
         flex: 1,
         width: '80%',
         margin: '10%',
-        height: 330,
+        height: 350,
+        backgroundColor: '#F6EABE',
+        borderRadius: 10,
       }}
     >
-      <Card.Title>{name}</Card.Title>
+      <Card.Title style={{ fontSize: 20 }}>
+        {name}{' '}
+        {item ? (
+          <Icon name="inbox" type="antdesign" color="black" size={17} />
+        ) : null}
+      </Card.Title>
       <Card.Divider />
       <Card.Image
         source={image}
@@ -46,40 +46,69 @@ export default function AnimalCard(props: Props) {
       <Card.Divider />
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.statContainerFirst}>
-          <Icon
-            name="expand-arrows-alt"
-            type="font-awesome-5"
-            color="black"
-            size={20}
-          />
-          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="expand-arrows-alt"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{stats.range}</Text>
+          </View>
         </View>
         <View style={styles.statContainerFirst}>
-          <Icon name="dumbbell" type="font-awesome-5" color="black" size={20} />
-          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="dumbbell"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{stats.strength}</Text>
+          </View>
         </View>
         <View style={styles.statContainerFirst}>
-          <Icon name="running" type="font-awesome-5" color="black" size={20} />
-          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon
+              name="running"
+              type="font-awesome-5"
+              color="black"
+              size={20}
+            />
+            <Text style={{ marginLeft: '3%' }}>{stats.agility}</Text>
+          </View>
         </View>
       </View>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.statContainerSecond}>
-          <Icon name="star" type="font-awesome" color="black" size={20} />
-          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon name="star" type="font-awesome" color="black" size={20} />
+            <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          </View>
         </View>
-
         <View style={styles.statContainerSecond}>
-          <Icon name="bolt" type="font-awesome" color="black" size={20} />
-          <Text style={{ marginLeft: '3%' }}>{stars}</Text>
+          <View style={styles.backGroundStatsContainer}>
+            <Icon name="bolt" type="font-awesome" color="black" size={20} />
+            <Text style={{ marginLeft: '3%' }}>
+              {currentEnergy}/{maxEnergy}
+            </Text>
+          </View>
         </View>
       </View>
-      <Text>{type}</Text>
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
+  backGroundStatsContainer: {
+    backgroundColor: '#C8E3D4',
+    borderRadius: 10,
+    width: '90%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '8%',
+  },
   statContainerFirst: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
@@ -97,6 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '1%',
+    marginVertical: '2%',
     // backgroundColor: '#87AAAA',
   },
   container: {

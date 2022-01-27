@@ -4,6 +4,7 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import { loginWithEmail, authenticateWithGoogle } from '../../auth/methods';
 import { Input, Button, Avatar } from 'react-native-elements';
+import TwoButton from '../../components/twoButton';
 
 const logoImage = require('./../../../assets/logo.png');
 
@@ -78,49 +79,11 @@ export default function LoginScreen() {
           defaultValue={password}
           onChangeText={(newText) => setPassword(newText)}
         />
-        {/* </View>
-      <View style={styles.input_container}> */}
-        {/* <Button value="Zaloguj" onPress={login} />
-        <Button value="Zaloguj z Google" onPress={authenticateWithGoogle} /> */}
-
-        <Button
-          title="Zaloguj"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{
-            fontWeight: 'bold',
-            color: '#000',
-          }}
-          onPress={login}
-        />
-        <Button
-          title="Zaloguj z Google"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-            marginBottom: '10%',
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{
-            fontWeight: 'bold',
-            color: '#000',
-          }}
-          onPress={authenticateWithGoogle}
+        <TwoButton
+          valueOne="Zaloguj"
+          valueTwo="Zaloguj z Google"
+          onPressOne={login}
+          onPressTwo={authenticateWithGoogle}
         />
       </View>
     </View>

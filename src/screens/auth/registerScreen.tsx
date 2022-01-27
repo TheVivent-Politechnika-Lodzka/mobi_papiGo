@@ -5,6 +5,7 @@ import { authenticateWithGoogle, registerWithEmail } from '../../auth/methods';
 // import TextInput from '../../components/text-input';
 // import Button from '../../components/button';
 import { Input, Button } from 'react-native-elements';
+import TwoButton from '../../components/twoButton';
 
 export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
@@ -114,46 +115,11 @@ export default function RegisterScreen() {
           defaultValue={password}
           onChangeText={(newText) => setPasswordConfirm(newText)}
         />
-        {/* <Button value="Zarejestruj" onPress={handleRegister} />
-        <Button value="Zarejstruj z Google" onPress={handleGoogleRegister} /> */}
-        <Button
-          title="Zaloguj"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{
-            fontWeight: 'bold',
-            color: '#000',
-          }}
-          onPress={handleRegister}
-        />
-        <Button
-          title="Zaloguj z Google"
-          buttonStyle={{
-            backgroundColor: '#C8E3D4',
-            borderWidth: 1,
-            borderColor: 'white',
-            borderRadius: 30,
-            marginBottom: '10%',
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 50,
-            marginVertical: 10,
-          }}
-          titleStyle={{
-            fontWeight: 'bold',
-            color: '#000',
-          }}
-          onPress={handleGoogleRegister}
+        <TwoButton
+          valueOne="Zaloguj"
+          valueTwo="Zaloguj z Google"
+          onPressOne={handleRegister}
+          onPressTwo={handleGoogleRegister}
         />
       </View>
     </View>

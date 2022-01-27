@@ -5,7 +5,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MapComponent from '../src/components/map';
 
-it('Button render test', () => {
-  const button = renderer.create(<MapComponent />).toJSON();
-  expect(button).toMatchSnapshot();
+it('Map test', () => {
+  const map = renderer.create(<MapComponent />).toJSON();
+  expect(map).toMatchSnapshot();
 });

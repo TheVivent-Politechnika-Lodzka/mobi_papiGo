@@ -5,7 +5,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import LandingScreen from '../src/screens/auth/landingScreen';
 
-it('Button render test', () => {
+it('Landing test', () => {
   const land = renderer.create(<LandingScreen />).toJSON();
   expect(land).toMatchSnapshot();
 });

@@ -1,12 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { View, Text, StyleSheet, Alert, Button } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Animal, Item } from '../../types';
 import { useAnimals, useItems } from '../../auth/useFirestore';
 import ItemCard from '../../components/item-card';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Avatar, Icon } from 'react-native-elements';
+import { Avatar, Icon, Button } from 'react-native-elements';
 import useCurrentUser from '../../auth/useCurrentUser';
+
+import NavBar from '../../components/navBar';
 
 const catImg = require('../../../assets/cat.png');
 const dogImg = require('../../../assets/dog.png');
@@ -52,95 +54,116 @@ export default function AnimalScreen({ route, navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.statContainerFirst}>
-          <Avatar size={48} rounded source={animalImg} />
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="expand-arrows-alt"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>{animal.stats.range}</Text>
+      <View style={styles.containerCards}>
+        <View style={styles.beanCard}>
+          <Avatar size={48} source={animalImg} />
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="expand-arrows-alt"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>{animal.stats.range}</Text>
+            </View>
+          </View>
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="dumbbell"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>{animal.stats.strength}</Text>
+            </View>
+          </View>
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="running"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>{animal.stats.agility}</Text>
+            </View>
           </View>
         </View>
-        <View style={styles.statContainerFirst}>
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="dumbbell"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>{animal.stats.strength}</Text>
+
+        <View style={styles.beanCard}>
+          <Avatar size={48} source={collarImg} />
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="expand-arrows-alt"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>
+                {animal.item?.buff.range || 0}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="dumbbell"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>
+                {animal.item?.buff.strength || 0}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.statContainerFirst}>
+            <View style={styles.backGroundStatsContainer}>
+              <Icon
+                name="running"
+                type="font-awesome-5"
+                color="black"
+                size={20}
+              />
+              <Text style={{ marginLeft: '3%' }}>
+                {animal.item?.buff.agility || 0}
+              </Text>
+            </View>
           </View>
         </View>
-        <View style={styles.statContainerFirst}>
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="running"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>{animal.stats.agility}</Text>
-          </View>
-        </View>
+
+        {animal.item ? (
+          <Button
+            title="Zdejmij obrożę"
+            containerStyle={{
+              width: '60%',
+              marginHorizontal: '20%',
+              borderStyle: 'solid',
+              borderWidth: 3,
+              borderColor: '#F6EABE',
+              borderRadius: 15,
+            }}
+            buttonStyle={{
+              backgroundColor: '#C8E3D4',
+              borderRadius: 15,
+            }}
+            titleStyle={{
+              color: 'black',
+            }}
+            onPress={handleCollarTakeOff}
+          />
+        ) : null}
+
+        <ScrollView>
+          {items.map((item: Item) => (
+            <ItemCard key={item.id} item={item} onPress={handleCollarChange} />
+          ))}
+        </ScrollView>
       </View>
-
-      <View style={{ flexDirection: 'row' }}>
-        <Avatar size={48} rounded source={collarImg} />
-        <View style={styles.statContainerFirst}>
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="expand-arrows-alt"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>
-              {animal.item?.buff.range || 0}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainerFirst}>
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="dumbbell"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>
-              {animal.item?.buff.strength || 0}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainerFirst}>
-          <View style={styles.backGroundStatsContainer}>
-            <Icon
-              name="running"
-              type="font-awesome-5"
-              color="black"
-              size={20}
-            />
-            <Text style={{ marginLeft: '3%' }}>
-              {animal.item?.buff.agility || 0}
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      {animal.item && (
-        <Button title="Zdejmij obrożę" onPress={handleCollarTakeOff} />
-      )}
-
-      <ScrollView>
-        {items.map((item: Item) => (
-          <ItemCard key={item.id} item={item} onPress={handleCollarChange} />
-        ))}
-      </ScrollView>
+      <NavBar navigation={navigation} />
     </View>
   );
 }
@@ -155,6 +178,25 @@ const styles = StyleSheet.create({
     height: '100%',
     ...StyleSheet.absoluteFillObject,
   },
+  beanCard: {
+    flexDirection: 'row',
+    backgroundColor: '#F6EABE',
+    margin: '2%',
+    borderRadius: 10,
+    padding: '2%',
+  },
+  containerCards: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '85%',
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: '5%',
+    borderRadius: 10,
+    backgroundColor: '#F6D7A7',
+  },
   backGroundStatsContainer: {
     backgroundColor: '#C8E3D4',
     borderRadius: 10,
@@ -167,7 +209,7 @@ const styles = StyleSheet.create({
   statContainerFirst: {
     flexDirection: 'row',
     // justifyContent: 'space-between',
-    width: '31%',
+    width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '2%',

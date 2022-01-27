@@ -1,18 +1,20 @@
 # MOBI - PapiGo
 
-### używać yarna lepiej, tak na wszelki wypadek
+## Wymagania:
 
-## uruchomienie
+> - zainstalowany yarn/npm wraz z node.js
+> - skonfigurowane środowisko Android Studio zgodnie z poradnikiem dostępnym tutaj: https://reactnative.dev/docs/environment-setup
 
-1. `yarn android` - odpala przebudowanie aplikacji (przydaje się, gdy np zmienimy coś w ./android)
-2. `yarn start` - odpala bundler metro (polecam z opcją `--reset-cache`, odpala dłużej, ale za to nic się nie pierdoli)
+## uruchomienie w środowisku developerskim
 
-> często nie trzeba używać yarn start, ale też często trzeba. react native ma problemy ze sobą
+1. `yarn` / `npm install` - instalacja pakietów
+2. `yarn android` / `npm run android` - buduje projekt i uruchamia bundler metro
+3. `yarn start` / `npm run start` - uruchami bundler metro
+4. `yarn test` / `npm run test` - wykonuje testy i generuje raport pokrycia w `./coverage`
 
-## uwagi
+## budowanie aplikacji
 
-jak doda się cokolwiek (moduł/asset), to trzeba na nowo odpalić bundler
+> UWAGA !!! projekt nie jest przygotowany pod wydanie "production", tzn nie zostały skonfigurowane odpowiednie klucze dla sklepu play ani dla chmury firebase. Aplikacja zostanie poprawnie zbudowana, ale z kluczami deweloperskimi
 
-## kwestia emulatora
-
-> https://reactnative.dev/docs/environment-setup
+1. `cd ./android`
+2. `./gradlew assembleRelease` - zbuduje aplikację w `\android\app\build\outputs\apk\release`

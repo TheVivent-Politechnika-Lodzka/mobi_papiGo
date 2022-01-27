@@ -19,14 +19,6 @@ export default function AnimalCard(props: Props) {
   const image = type === 'cat' ? catImg : dogImg;
 
   return (
-    // <View style={styles.container}>
-    //   <Avatar rounded size={64} source={image}>
-    //     {hasItem && <Avatar.Accessory size={32} />}
-    //   </Avatar>
-    //   <Text style={styles.name}>{name}</Text>
-
-    // </View>
-
     <Card
       containerStyle={{
         flex: 1,

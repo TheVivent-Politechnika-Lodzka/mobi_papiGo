@@ -16,6 +16,8 @@ export class Item {
 
 export class Animal {
   id: string = uuid();
+  currentEnergy: number = 0;
+  maxEnergy: number = 0;
   name: string = '';
   type: AnimalType = null;
   stars: number = 0;
@@ -24,14 +26,12 @@ export class Animal {
 }
 
 export class Buff {
-  energy?: number = 0;
   strength?: number = 0;
   agility?: number = 0;
   range?: number = 0;
 }
 
 export class Stats extends Buff {
-  energy: number = 0;
   strength: number = 0;
   agility: number = 0;
   range: number = 0;
